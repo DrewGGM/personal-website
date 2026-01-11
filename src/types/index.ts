@@ -29,6 +29,13 @@ export interface Skill {
   details: string;
 }
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+  certificateUrl?: string;
+}
+
 export interface CVData {
   name: string;
   headline: string;
@@ -41,6 +48,6 @@ export interface CVData {
   education: Education[];
   experience: Experience[];
   skills: Skill[];
-  certifications: string[];
+  certifications: Certification[];
   languages: Skill[];
 }

@@ -83,10 +83,45 @@ export const cvData: CVData = {
     }
   ],
   certifications: [
-    "DevOps, APIs and Microservices Architecture Fundamentals — Udemy (Feb 2025)",
-    "Angular — Edutin Academy (Mar 2025)",
-    "Scrum Fundamentals Certified (SFC) — VMEdu inc (Feb 2024)",
-    "Spring Framework — Udemy (May 2025)"
+    {
+      title: "Spring Boot: Backend Enterprise Professional Certificate",
+      issuer: "Dev Senior Code",
+      date: "Dec 2025",
+      certificateUrl: "/certificates/devseniorcode%20springboot.pdf"
+    },
+    {
+      title: "QA Engineer Bootcamp",
+      issuer: "TripleTen LatAm",
+      date: "Dec 2024 - Jun 2025",
+      certificateUrl: "/certificates/QAEngineer%20Tripleten.pdf"
+    },
+    {
+      title: "Scrum Fundamentals Certified (SFC)",
+      issuer: "VMEdu inc",
+      date: "Feb 2024",
+      certificateUrl: "/certificates/scrumcertified.pdf"
+    },
+    {
+      title: "Desarrollo Web y UX/UI",
+      issuer: "Next U",
+      date: "Feb 2022",
+      certificateUrl: "/certificates/nextU-DesarrolloWeb%20UXUI.pdf"
+    },
+    {
+      title: "DevOps, APIs and Microservices Architecture Fundamentals",
+      issuer: "Udemy",
+      date: "Feb 2025"
+    },
+    {
+      title: "Angular",
+      issuer: "Edutin Academy",
+      date: "Mar 2025"
+    },
+    {
+      title: "Spring Framework",
+      issuer: "Udemy",
+      date: "May 2025"
+    }
   ],
   languages: [
     {
