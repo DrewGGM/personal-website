@@ -1,24 +1,30 @@
-import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Skills from './components/Skills';
+import Projects from './components/Projects';
 import Certifications from './components/Certifications';
-import Languages from './components/Languages';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 import { cvData } from './data/cvData';
 
 function App() {
   return (
     <>
-      <Header data={cvData} />
+      <Navbar />
+      <Hero data={cvData} />
       <div className="container">
-        <About summary={cvData.summary} />
+        <About data={cvData} />
         <Experience experiences={cvData.experience} />
         <Education education={cvData.education} />
         <Skills skills={cvData.skills} />
+        <Projects projects={cvData.projects} />
         <Certifications certifications={cvData.certifications} />
-        <Languages languages={cvData.languages} />
+        <Contact data={cvData} />
       </div>
+      <Footer />
     </>
   );
 }

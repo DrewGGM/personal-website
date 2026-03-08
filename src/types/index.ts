@@ -36,6 +36,16 @@ export interface Certification {
   certificateUrl?: string;
 }
 
+export interface Project {
+  title: string;
+  description: string;
+  techStack: string[];
+  githubUrl?: string;
+  demoUrl?: string;
+  imageUrl?: string;
+  status: 'completed' | 'in-progress' | 'coming-soon';
+}
+
 export interface CVData {
   name: string;
   headline: string;
@@ -50,4 +60,5 @@ export interface CVData {
   skills: Skill[];
   certifications: Certification[];
   languages: Skill[];
+  projects: Project[];
 }
