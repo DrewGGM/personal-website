@@ -43,6 +43,7 @@ export interface Project {
   githubUrl?: string;
   demoUrl?: string;
   imageUrl?: string;
+  images?: string[];
   status: 'completed' | 'in-progress' | 'coming-soon';
 }
 

@@ -67,11 +67,12 @@ export const cvData: CVData = {
       startDate: "2025-05",
       endDate: "2025-12",
       location: "Armenia, Quindio, Colombia",
-      summary: "Designed and developed a custom POS system to streamline business operations, including sales management, inventory control, and electronic invoicing integration in compliance with local regulations.",
+      summary: "Designed and developed a complete POS desktop application with Go (Wails) backend and React frontend, featuring real-time order management, DIAN electronic invoicing, thermal printing, payment terminal integration, and companion mobile apps for kitchen and waitstaff.",
       highlights: [
-        "Built a full-stack POS system covering sales workflows, inventory tracking, and reporting",
-        "Integrated electronic invoicing in compliance with Colombian DIAN regulations",
-        "Delivered the project end-to-end, from requirements gathering to production deployment"
+        "Built a full-stack POS system with Go backend (31+ services, PostgreSQL) and React 18 + Material-UI frontend",
+        "Integrated DIAN electronic invoicing (UBL 2.1), Bold payment terminals, and Google Sheets automated reporting",
+        "Developed real-time features via WebSocket: kitchen display, waiter tablets, and live order tracking",
+        "Implemented role-based access, AES-256 config encryption, and MCP integration for AI automation"
       ]
     }
   ],
@@ -97,9 +98,17 @@ export const cvData: CVData = {
   ],
   projects: [
     {
-      title: "Restaurant Management System",
-      description: "Custom POS system built for La Lechona del Parque S.A.S, covering sales management, inventory control, and electronic invoicing in compliance with Colombian DIAN regulations.",
-      techStack: ["Java", "Spring Boot", "SQL", "Angular"],
+      title: "Restaurant POS System",
+      description: "Complete point-of-sale desktop application for Colombian restaurants. Features touchscreen-optimized sales, real-time kitchen/waiter apps, DIAN electronic invoicing, Bold payment terminals, inventory control with auto-deduction, split billing, and AI automation via MCP.",
+      techStack: ["Go", "React", "TypeScript", "PostgreSQL", "Material-UI", "WebSocket"],
+      githubUrl: "https://github.com/DrewGGM/demo-pos-system",
+      demoUrl: "https://pos-system.v1.andrewgarcia.dev",
+      imageUrl: "/projects/pos-main.png",
+      images: [
+        "/projects/pos-main.png",
+        "/projects/pos-dashboard.png",
+        "/projects/pos-products.png"
+      ],
       status: "completed"
     },
     {
