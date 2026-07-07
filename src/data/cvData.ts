@@ -112,10 +112,19 @@ export const cvData: CVData = {
       status: "completed"
     },
     {
-      title: "Coming Soon",
-      description: "New projects are in development. Stay tuned for updates!",
-      techStack: [],
-      status: "coming-soon"
+      title: "AI Content Bot",
+      description: "Agent-agnostic AI content factory for social media. Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex, Gemini CLI, Kimi, Cursor...) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Features AI visual QA, a human-in-the-loop approval panel (PWA), smart content planning from history, and one-click publishing to Meta.",
+      techStack: ["Node.js", "TypeScript", "AI Agents", "Remotion", "FFmpeg", "Cloudflare D1/R2"],
+      githubUrl: "https://github.com/DrewGGM/ai-content-bot",
+      demoUrl: "https://ai-content-bot-demo.andrewgarcia.dev",
+      imageUrl: "/projects/content-bot-panel.png",
+      images: [
+        "/projects/content-bot-panel.png",
+        "/projects/content-bot-pieces.png",
+        "/projects/content-bot-generate.png",
+        "/projects/content-bot-mobile.png"
+      ],
+      status: "completed"
     },
     {
       title: "Coming Soon",
