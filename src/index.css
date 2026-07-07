@@ -780,19 +780,24 @@ body {
 .project-featured-image {
   position: relative;
   overflow: hidden;
-  height: 380px;
+  height: 420px;
+  background:
+    radial-gradient(60% 80% at 50% 20%, rgba(99, 102, 241, 0.10), transparent 70%),
+    var(--bg-secondary);
 }
 
+/* contain: los screenshots (horizontales o verticales) se ven COMPLETOS, sin recortes */
 .project-featured-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  padding: 1rem;
   transition: transform 0.5s ease;
 }
 
 .project-featured:hover .project-featured-image img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .project-featured-overlay {
@@ -878,7 +883,7 @@ body {
 .gallery-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: opacity 0.3s ease;
 }
@@ -906,23 +911,29 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, background 0.2s ease;
   opacity: 0;
 }
 
-.gallery:hover .gallery-btn {
+.gallery:hover .gallery-btn,
+.gallery:focus-within .gallery-btn {
   opacity: 1;
+}
+
+/* En pantallas táctiles no hay hover: flechas siempre visibles */
+@media (hover: none) {
+  .gallery-btn { opacity: 1; }
 }
 
 .gallery-btn:hover {
@@ -941,14 +952,16 @@ body {
   gap: 0.4rem;
 }
 
+/* Área táctil amplia (24px) con punto visual pequeño dentro */
 .gallery-dot {
-  width: 8px;
-  height: 8px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: none;
+  border: 6px solid transparent;
   background: rgba(255, 255, 255, 0.4);
+  background-clip: padding-box;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
   padding: 0;
 }
 
@@ -1180,7 +1193,7 @@ body {
   }
 
   .project-featured-image {
-    height: 240px;
+    height: 300px;
   }
 
   .project-featured-info {
@@ -1271,5 +1284,17 @@ body {
   .nav-item {
     width: 38px;
     height: 38px;
+  }
+}
+
+/* ===== ACCESSIBILITY: respeta la preferencia de menos movimiento ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

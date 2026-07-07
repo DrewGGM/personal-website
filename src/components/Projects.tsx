@@ -24,12 +24,16 @@ function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
 
   const prev = () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
   const next = () => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+  };
 
   return (
-    <div className="gallery">
-      <img src={images[current]} alt={`${alt} - ${current + 1}`} className="gallery-img" />
+    <div className="gallery" role="group" aria-label={`${alt} screenshots`} tabIndex={0} onKeyDown={onKeyDown}>
+      <img src={images[current]} alt={`${alt} - screenshot ${current + 1} of ${images.length}`} className="gallery-img" loading="lazy" />
       <div className="gallery-overlay">
-        <span className="gallery-counter">{current + 1} / {images.length}</span>
+        <span className="gallery-counter" aria-live="polite">{current + 1} / {images.length}</span>
       </div>
       <button className="gallery-btn gallery-prev" onClick={prev} aria-label="Previous image">
         <ChevronLeft size={20} />
@@ -61,7 +65,7 @@ function FeaturedProject({ project }: { project: Project }) {
           {images.length > 1 ? (
             <ImageGallery images={images} alt={project.title} />
           ) : images.length === 1 ? (
-            <img src={images[0]} alt={project.title} />
+            <img src={images[0]} alt={project.title} loading="lazy" />
           ) : null}
           {images.length <= 1 && (
             <div className="project-featured-overlay">

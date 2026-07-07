@@ -2,7 +2,7 @@ import type { CVData } from '../types';
 
 export const cvData: CVData = {
   name: "Andrew Garcia Mosquera",
-  headline: "Software Engineering Student",
+  headline: "Software Engineer · Founder of Lyroo",
   location: "Armenia, Quindio, Colombia",
   email: "contact@andrewgarcia.dev",
   phone: "+57 320 657 4470",
@@ -19,7 +19,7 @@ export const cvData: CVData = {
       url: "https://github.com/DrewGGM"
     }
   ],
-  summary: "Software Engineering student specializing in backend development and application architecture. Proficient in Java, Spring Boot, and API development with hexagonal architecture. Currently contributing to core banking systems at COFINCAFE and developing production-ready management systems. Seeking opportunities to contribute to software development teams with strong technical skills and agile methodologies expertise.",
+  summary: "Software engineer and founder of Lyroo S.A.S, a Colombian startup building LyrooPOS — an offline-first point of sale with an embedded DIAN electronic invoicing engine. Specialized in backend development and application architecture (Java/Spring Boot, Go, hexagonal architecture). Currently contributing to core banking systems at COFINCAFE while leading product and engineering at Lyroo. Strong foundation in QA, clean code and agile methodologies.",
   education: [
     {
       institution: "Institucion Universitaria EAM",
@@ -62,17 +62,17 @@ export const cvData: CVData = {
       ]
     },
     {
-      company: "La Lechona del Parque S.A.S",
-      position: "Freelance Software Developer",
+      company: "Lyroo S.A.S",
+      position: "Founder & Lead Software Engineer",
       startDate: "2025-05",
-      endDate: "2025-12",
-      location: "Armenia, Quindio, Colombia",
-      summary: "Designed and developed a complete POS desktop application with Go (Wails) backend and React frontend, featuring real-time order management, DIAN electronic invoicing, thermal printing, payment terminal integration, and companion mobile apps for kitchen and waitstaff.",
+      endDate: "present",
+      location: "Armenia, Quindio, Colombia · Remote-first",
+      summary: "Founded Lyroo, a software startup for Colombian SMBs: LyrooPOS — a desktop point of sale with an embedded DIAN electronic invoicing engine (offline-first, unlimited invoicing with no per-document fees) — and Lyroo Build, a boutique custom software studio.",
       highlights: [
-        "Built a full-stack POS system with Go backend (31+ services, PostgreSQL) and React 18 + Material-UI frontend",
-        "Integrated DIAN electronic invoicing (UBL 2.1), Bold payment terminals, and Google Sheets automated reporting",
-        "Developed real-time features via WebSocket: kitchen display, waiter tablets, and live order tracking",
-        "Implemented role-based access, AES-256 config encryption, and MCP integration for AI automation"
+        "Built LyrooPOS end-to-end: Go (Wails) backend with 31+ services + React 18 frontend over PostgreSQL, shipped v1.2 to production with businesses in several Colombian cities",
+        "Engineered an embedded DIAN e-invoicing core (UBL 2.1) — unlimited electronic invoicing without third-party APIs or per-folio costs",
+        "Designed offline-first architecture: local data with AES-256 encrypted cloud backups, real-time kitchen/waiter apps via WebSocket, Bold payment terminals",
+        "Lead product, engineering, sales and customer onboarding, including DIAN digital-certificate management for clients"
       ]
     }
   ],
@@ -97,6 +97,18 @@ export const cvData: CVData = {
     { label: "English", details: "Professional" }
   ],
   projects: [
+    {
+      title: "Lyroo — Startup (POS + DIAN E-Invoicing)",
+      description: "My startup: software for Colombian SMBs. LyrooPOS is an offline-first desktop point of sale with an embedded DIAN electronic invoicing engine (UBL 2.1) — unlimited invoicing with no per-document fees, encrypted cloud backups, real-time kitchen & waiter apps, and human WhatsApp support. Lyroo Build is our boutique custom software studio.",
+      techStack: ["Go", "Wails", "React", "PostgreSQL", "Next.js", "DIAN UBL 2.1"],
+      demoUrl: "https://lyroo.com.co",
+      imageUrl: "/projects/lyroo-web.png",
+      images: [
+        "/projects/lyroo-web.png",
+        "/projects/lyroo-web-2.png"
+      ],
+      status: "completed"
+    },
     {
       title: "Restaurant POS System",
       description: "Complete point-of-sale desktop application for Colombian restaurants. Features touchscreen-optimized sales, real-time kitchen/waiter apps, DIAN electronic invoicing, Bold payment terminals, inventory control with auto-deduction, split billing, and AI automation via MCP.",
