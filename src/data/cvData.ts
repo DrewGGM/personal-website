@@ -69,7 +69,7 @@ export const cvData: CVData = {
       location: "Armenia, Quindio, Colombia · Remote-first",
       summary: "Founded Lyroo, a software startup for Colombian SMBs: LyrooPOS — a desktop point of sale with an embedded DIAN electronic invoicing engine (offline-first, unlimited invoicing with no per-document fees) — and Lyroo Build, a boutique custom software studio.",
       highlights: [
-        "Built LyrooPOS end-to-end: Go (Wails) backend with 31+ services + React 18 frontend over PostgreSQL, shipped v1.2 to production with businesses in several Colombian cities",
+        "Built LyrooPOS end-to-end: Go (Wails) backend with 31+ services + React 18 frontend over PostgreSQL — v1.2 in production, first active customers since July 2026",
         "Engineered an embedded DIAN e-invoicing core (UBL 2.1) — unlimited electronic invoicing without third-party APIs or per-folio costs",
         "Designed offline-first architecture: local data with AES-256 encrypted cloud backups, real-time kitchen/waiter apps via WebSocket, Bold payment terminals",
         "Lead product, engineering, sales and customer onboarding, including DIAN digital-certificate management for clients"
