@@ -6,11 +6,38 @@ Professional portfolio website showcasing my experience, skills, and certificati
 
 - 📱 Fully responsive design
 - 🎨 Modern and clean UI
-- 📄 Downloadable CV
+- 📄 Downloadable CV — **auto-generated from the site data** (see "CV Generator" below)
 - 🎓 Interactive certifications showcase
 - 🖼️ Profile photo display
 - 🔗 Social media links (LinkedIn, GitHub)
 - ⚡ Fast loading with Vite
+
+## CV Generator (`npm run cv`)
+
+The downloadable PDF (`public/Andrew_Garcia_Mosquera_CV.pdf`) is **generated from
+`src/data/cvData.ts`** — the same single source of truth the website renders. Whenever you
+update your experience, projects or skills, regenerate the PDF so it never drifts from the site:
+
+```bash
+npm run cv
+```
+
+How it works (`scripts/generate-cv.ts`):
+
+1. Imports `cvData.ts` and builds a print-optimized HTML resume.
+2. Renders it to PDF with headless Chrome/Edge (auto-detected on Windows/Linux, no extra deps).
+3. Writes the result to `public/` so the site's "Download CV" button serves the fresh copy.
+
+The layout follows current resume conventions (researched 2026):
+
+- **One page** (right for <10 years of experience — every line must earn its place).
+- **Strict single column** — multi-column layouts, tables and text-in-headers break older ATS parsers.
+- **Standard section headings** (Summary / Experience / Projects / Skills / Education / Certifications).
+- **XYZ-style bullets**: what you built + how + measurable outcome.
+- Real selectable text only (no images for content), machine-readable dates, ≥9pt type.
+
+To adapt it for your own fork: edit `src/data/cvData.ts` (data) and the constants at the top of
+`scripts/generate-cv.ts` (accent color, output filename).
 
 ## Tech Stack
 

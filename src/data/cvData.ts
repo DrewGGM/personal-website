@@ -77,9 +77,9 @@ export const cvData: CVData = {
     }
   ],
   skills: [
-    { label: "Languages", details: "Java, Python, Go, SQL" },
-    { label: "Frameworks & Libraries", details: "Spring Boot, Angular, Selenium" },
-    { label: "DevOps & Tools", details: "Git, Docker, Scrum" },
+    { label: "Languages", details: "Java, Go, TypeScript, Python, SQL" },
+    { label: "Frameworks & Libraries", details: "Spring Boot, React, Node.js, Next.js, Angular, Wails, Selenium" },
+    { label: "DevOps & Tools", details: "Git, Docker, Cloudflare (Pages/D1/R2), Scrum" },
     { label: "Software Engineering", details: "OOP, Design Patterns, Data Structures, Clean Code, Hexagonal Architecture, Microservices" },
     { label: "Areas of Expertise", details: "Backend & Frontend Development, Software Architecture, QA, Usability" }
   ],
