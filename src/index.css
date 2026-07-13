@@ -1113,6 +1113,31 @@ body {
 }
 
 /* ===== CONTACT ===== */
+.contact-card-shell {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  border: 0.75px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 0.75rem;
+}
+
+.contact-card {
+  position: relative;
+  background: rgba(22, 22, 58, 0.6);
+  border: 0.75px solid var(--border);
+  border-radius: 1.15rem;
+  padding: 2.5rem 2rem;
+}
+
+.contact-headline {
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
 .contact-content {
   text-align: center;
   max-width: 600px;
@@ -1518,6 +1543,28 @@ body {
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 500;
+}
+
+/* ===== HIGHLIGHTS BENTO ===== */
+.highlights-eyebrow {
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+
+.highlights-bento {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .highlights-bento {
+    min-height: 26rem;
+  }
 }
 
 /* ===== GLOBAL CURSOR SPOTLIGHT (inspired by brittanychiang.com) ===== */

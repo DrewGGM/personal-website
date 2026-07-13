@@ -1,5 +1,6 @@
 import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
+import Highlights from './Highlights';
 import type { CVData } from '../types';
 
 interface AboutProps {
@@ -29,6 +30,13 @@ export default function About({ data }: AboutProps) {
           </div>
         </ScrollReveal>
       </div>
+
+      <ScrollReveal>
+        <p className="highlights-eyebrow">What I'm working on</p>
+      </ScrollReveal>
+      <ScrollReveal delay={0.1}>
+        <Highlights />
+      </ScrollReveal>
     </section>
   );
 }
