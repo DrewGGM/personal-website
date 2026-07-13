@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import ScrollReveal from './ScrollReveal';
+import SectionTitle from './SectionTitle';
+import InteractiveCard from './InteractiveCard';
 import { Github, ExternalLink, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Project } from '../types';
 
@@ -60,7 +62,7 @@ function FeaturedProject({ project }: { project: Project }) {
 
   return (
     <ScrollReveal>
-      <div className="project-featured">
+      <InteractiveCard className="project-featured">
         <div className="project-featured-image">
           {images.length > 1 ? (
             <ImageGallery images={images} alt={project.title} />
@@ -105,7 +107,7 @@ function FeaturedProject({ project }: { project: Project }) {
             </div>
           )}
         </div>
-      </div>
+      </InteractiveCard>
     </ScrollReveal>
   );
 }
@@ -113,7 +115,7 @@ function FeaturedProject({ project }: { project: Project }) {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <ScrollReveal delay={index * 0.1}>
-      <div className="project-card">
+      <InteractiveCard className="project-card" tilt maxTilt={4}>
         <div className="project-image">
           {project.imageUrl ? (
             <img src={project.imageUrl} alt={project.title} />
@@ -153,7 +155,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           )}
         </div>
-      </div>
+      </InteractiveCard>
     </ScrollReveal>
   );
 }
@@ -164,9 +166,7 @@ export default function Projects({ projects }: ProjectsProps) {
 
   return (
     <section id="projects" className="section">
-      <ScrollReveal>
-        <h2 className="section-title">Projects</h2>
-      </ScrollReveal>
+      <SectionTitle index={5}>Projects</SectionTitle>
 
       {featured.map((project, index) => (
         <FeaturedProject key={`featured-${project.title}-${index}`} project={project} />

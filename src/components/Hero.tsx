@@ -2,6 +2,8 @@ import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Download, ChevronDown } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
+import MagneticButton from './MagneticButton';
+import CountUp from './CountUp';
 import type { CVData } from '../types';
 
 interface HeroProps {
@@ -25,6 +27,14 @@ export default function Hero({ data }: HeroProps) {
   const github = data.socialNetworks.find((s) => s.network === 'GitHub');
   const linkedin = data.socialNetworks.find((s) => s.network === 'LinkedIn');
 
+  const completedProjects = data.projects.filter((p) => p.status === 'completed').length;
+  const stats = [
+    { value: 3, suffix: '+', label: 'Years coding' },
+    { value: completedProjects, suffix: '', label: 'Projects shipped' },
+    { value: data.certifications.length, suffix: '', label: 'Certifications' },
+    { value: 1, suffix: '', label: 'Startup founded' },
+  ];
+
   return (
     <section id="home" className="hero">
       <ParticleBackground />
@@ -41,14 +51,19 @@ export default function Hero({ data }: HeroProps) {
           </motion.div>
           <motion.h1 className="hero-name" variants={item}>
             Hi, I'm{' '}
-            <span className="gradient-text">{data.name.split(' ')[0]}</span>
+            <span className="gradient-text gradient-animate">
+              {data.name.split(' ')[0]}
+            </span>
           </motion.h1>
           <motion.div className="hero-typewriter" variants={item}>
+            <span className="hero-typewriter-prefix">&gt;_ </span>
             <TypeAnimation
               sequence={[
                 'Backend Developer',
                 2000,
                 'Software Engineer',
+                2000,
+                'Startup Founder',
                 2000,
                 'QA Engineer',
                 2000,
@@ -61,39 +76,57 @@ export default function Hero({ data }: HeroProps) {
             />
           </motion.div>
           <motion.p className="hero-description" variants={item}>
-            {data.location}
+            {data.headline} — building software for real businesses from{' '}
+            {data.location}.
           </motion.p>
           <motion.div className="hero-actions" variants={item}>
             {github && (
-              <a
-                href={github.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-social-link"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </a>
+              <MagneticButton>
+                <a
+                  href={github.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-social-link"
+                  aria-label="GitHub"
+                >
+                  <Github size={20} />
+                </a>
+              </MagneticButton>
             )}
             {linkedin && (
-              <a
-                href={linkedin.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-social-link"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
+              <MagneticButton>
+                <a
+                  href={linkedin.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-social-link"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+              </MagneticButton>
             )}
-            <a
-              href="/Andrew_Garcia_Mosquera_CV.pdf"
-              download
-              className="btn-primary"
-            >
-              <Download size={18} />
-              Download CV
-            </a>
+            <MagneticButton strength={0.25}>
+              <a
+                href="/Andrew_Garcia_Mosquera_CV.pdf"
+                download
+                className="btn-primary"
+              >
+                <Download size={18} />
+                Download CV
+              </a>
+            </MagneticButton>
+          </motion.div>
+
+          <motion.div className="hero-stats" variants={item}>
+            {stats.map((stat) => (
+              <div className="hero-stat" key={stat.label}>
+                <span className="hero-stat-value">
+                  <CountUp to={stat.value} suffix={stat.suffix} />
+                </span>
+                <span className="hero-stat-label">{stat.label}</span>
+              </div>
+            ))}
           </motion.div>
         </div>
 
@@ -138,14 +171,17 @@ export default function Hero({ data }: HeroProps) {
         </motion.div>
       </motion.div>
 
-      <motion.div
+      <motion.a
+        href="#about"
         className="scroll-indicator"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
+        aria-label="Scroll to About"
       >
+        <span>Scroll</span>
         <ChevronDown size={24} />
-      </motion.div>
+      </motion.a>
     </section>
   );
 }

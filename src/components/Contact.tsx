@@ -1,4 +1,5 @@
 import ScrollReveal from './ScrollReveal';
+import SectionTitle from './SectionTitle';
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 import type { CVData } from '../types';
 
@@ -12,9 +13,7 @@ export default function Contact({ data }: ContactProps) {
 
   return (
     <section id="contact" className="section">
-      <ScrollReveal>
-        <h2 className="section-title">Get In Touch</h2>
-      </ScrollReveal>
+      <SectionTitle index={7}>Get In Touch</SectionTitle>
       <div className="contact-content">
         <ScrollReveal delay={0.1}>
           <p className="contact-text">

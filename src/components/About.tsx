@@ -1,4 +1,5 @@
 import ScrollReveal from './ScrollReveal';
+import SectionTitle from './SectionTitle';
 import type { CVData } from '../types';
 
 interface AboutProps {
@@ -8,9 +9,7 @@ interface AboutProps {
 export default function About({ data }: AboutProps) {
   return (
     <section id="about" className="section">
-      <ScrollReveal>
-        <h2 className="section-title">About Me</h2>
-      </ScrollReveal>
+      <SectionTitle index={1}>About Me</SectionTitle>
       <div className="about-content">
         <ScrollReveal delay={0.1}>
           <div className="about-photo-wrapper">

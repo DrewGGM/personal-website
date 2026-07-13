@@ -8,11 +8,17 @@ import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollProgress from './components/ScrollProgress';
+import AuroraBackground from './components/AuroraBackground';
+import CursorGlow from './components/CursorGlow';
 import { cvData } from './data/cvData';
 
 function App() {
   return (
     <>
+      <AuroraBackground />
+      <CursorGlow />
+      <ScrollProgress />
       <Navbar />
       <Hero data={cvData} />
       <div className="container">

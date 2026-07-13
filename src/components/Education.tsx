@@ -1,4 +1,6 @@
 import ScrollReveal from './ScrollReveal';
+import SectionTitle from './SectionTitle';
+import InteractiveCard from './InteractiveCard';
 import type { Education as EducationType } from '../types';
 
 interface EducationProps {
@@ -17,13 +19,11 @@ const formatDate = (date: string) => {
 export default function Education({ education }: EducationProps) {
   return (
     <section id="education" className="section">
-      <ScrollReveal>
-        <h2 className="section-title">Education</h2>
-      </ScrollReveal>
+      <SectionTitle index={3}>Education</SectionTitle>
       <div className="timeline">
         {education.map((edu, index) => (
           <ScrollReveal key={`${edu.institution}-${edu.startDate}`} delay={index * 0.1}>
-            <div className="timeline-item">
+            <InteractiveCard className="timeline-item">
               <div className="timeline-header">
                 <div>
                   <h3 className="timeline-title">{edu.degree} — {edu.area}</h3>
@@ -37,7 +37,7 @@ export default function Education({ education }: EducationProps) {
                 </div>
               </div>
               {edu.summary && <p className="timeline-summary">{edu.summary}</p>}
-            </div>
+            </InteractiveCard>
           </ScrollReveal>
         ))}
       </div>

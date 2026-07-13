@@ -1,4 +1,6 @@
 import ScrollReveal from './ScrollReveal';
+import SectionTitle from './SectionTitle';
+import InteractiveCard from './InteractiveCard';
 import type { Experience as ExperienceType } from '../types';
 
 interface ExperienceProps {
@@ -17,13 +19,11 @@ const formatDate = (date: string) => {
 export default function Experience({ experiences }: ExperienceProps) {
   return (
     <section id="experience" className="section">
-      <ScrollReveal>
-        <h2 className="section-title">Experience</h2>
-      </ScrollReveal>
+      <SectionTitle index={2}>Experience</SectionTitle>
       <div className="timeline">
         {experiences.map((exp, index) => (
           <ScrollReveal key={`${exp.company}-${exp.startDate}`} delay={index * 0.1}>
-            <div className="timeline-item">
+            <InteractiveCard className="timeline-item">
               <div className="timeline-header">
                 <div>
                   <h3 className="timeline-title">{exp.position}</h3>
@@ -44,7 +44,7 @@ export default function Experience({ experiences }: ExperienceProps) {
                   ))}
                 </ul>
               )}
-            </div>
+            </InteractiveCard>
           </ScrollReveal>
         ))}
       </div>
