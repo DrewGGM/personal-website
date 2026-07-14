@@ -2,6 +2,7 @@ import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
 import InteractiveCard from './InteractiveCard';
 import { ExternalLink } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 import type { Certification } from '../types';
 
 interface CertificationsProps {
@@ -9,9 +10,10 @@ interface CertificationsProps {
 }
 
 export default function Certifications({ certifications }: CertificationsProps) {
+  const { t } = useLanguage();
   return (
     <section id="certifications" className="section">
-      <SectionTitle index={6}>Certifications &amp; Courses</SectionTitle>
+      <SectionTitle index={6}>{t.sections.certifications}</SectionTitle>
       <div className="certifications-grid">
         {certifications.map((cert, index) => (
           <ScrollReveal key={cert.title} delay={index * 0.08}>
@@ -29,7 +31,7 @@ export default function Certifications({ certifications }: CertificationsProps) 
                   className="btn-certificate"
                 >
                   <ExternalLink size={16} />
-                  View Certificate
+                  {t.certifications.viewCertificate}
                 </a>
               )}
             </InteractiveCard>

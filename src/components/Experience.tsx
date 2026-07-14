@@ -1,25 +1,19 @@
 import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
 import InteractiveCard from './InteractiveCard';
+import { useLanguage } from '../i18n/LanguageContext';
+import { formatDate } from '../i18n/translations';
 import type { Experience as ExperienceType } from '../types';
 
 interface ExperienceProps {
   experiences: ExperienceType[];
 }
 
-const formatDate = (date: string) => {
-  if (date === 'present') return 'Present';
-  const [year, monthStr] = date.split('-');
-  const month = parseInt(monthStr);
-  if (!year || month < 1 || month > 12) return date;
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return `${months[month - 1]} ${year}`;
-};
-
 export default function Experience({ experiences }: ExperienceProps) {
+  const { t } = useLanguage();
   return (
     <section id="experience" className="section">
-      <SectionTitle index={2}>Experience</SectionTitle>
+      <SectionTitle index={2}>{t.sections.experience}</SectionTitle>
       <div className="timeline">
         {experiences.map((exp, index) => (
           <ScrollReveal key={`${exp.company}-${exp.startDate}`} delay={index * 0.1}>
@@ -31,7 +25,7 @@ export default function Experience({ experiences }: ExperienceProps) {
                 </div>
                 <div className="timeline-meta">
                   <span className="timeline-date">
-                    {formatDate(exp.startDate)} — {formatDate(exp.endDate)}
+                    {formatDate(exp.startDate, t)} — {formatDate(exp.endDate, t)}
                   </span>
                   <p className="timeline-location">{exp.location}</p>
                 </div>

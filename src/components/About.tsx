@@ -1,6 +1,7 @@
 import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
 import Highlights from './Highlights';
+import { useLanguage } from '../i18n/LanguageContext';
 import type { CVData } from '../types';
 
 interface AboutProps {
@@ -8,9 +9,10 @@ interface AboutProps {
 }
 
 export default function About({ data }: AboutProps) {
+  const { t } = useLanguage();
   return (
     <section id="about" className="section">
-      <SectionTitle index={1}>About Me</SectionTitle>
+      <SectionTitle index={1}>{t.sections.about}</SectionTitle>
       <div className="about-content">
         <ScrollReveal delay={0.1}>
           <div className="about-photo-wrapper">
@@ -32,7 +34,7 @@ export default function About({ data }: AboutProps) {
       </div>
 
       <ScrollReveal>
-        <p className="highlights-eyebrow">What I'm working on</p>
+        <p className="highlights-eyebrow">{t.about.workingOn}</p>
       </ScrollReveal>
       <ScrollReveal delay={0.1}>
         <Highlights />

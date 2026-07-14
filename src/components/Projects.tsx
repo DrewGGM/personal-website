@@ -3,6 +3,7 @@ import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
 import InteractiveCard from './InteractiveCard';
 import { Github, ExternalLink, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 import type { Project } from '../types';
 
 interface ProjectsProps {
@@ -15,13 +16,8 @@ const statusClass: Record<Project['status'], string> = {
   'coming-soon': 'status-coming-soon',
 };
 
-const statusLabel: Record<Project['status'], string> = {
-  completed: 'Completed',
-  'in-progress': 'In Progress',
-  'coming-soon': 'Coming Soon',
-};
-
 function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
+  const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
 
   const prev = () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
@@ -32,15 +28,15 @@ function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
   };
 
   return (
-    <div className="gallery" role="group" aria-label={`${alt} screenshots`} tabIndex={0} onKeyDown={onKeyDown}>
-      <img src={images[current]} alt={`${alt} - screenshot ${current + 1} of ${images.length}`} className="gallery-img" loading="lazy" />
+    <div className="gallery" role="group" aria-label={t.projects.screenshotsOf(alt)} tabIndex={0} onKeyDown={onKeyDown}>
+      <img src={images[current]} alt={`${alt} - ${t.projects.screenshotOf(current + 1, images.length)}`} className="gallery-img" loading="lazy" />
       <div className="gallery-overlay">
         <span className="gallery-counter" aria-live="polite">{current + 1} / {images.length}</span>
       </div>
-      <button className="gallery-btn gallery-prev" onClick={prev} aria-label="Previous image">
+      <button className="gallery-btn gallery-prev" onClick={prev} aria-label={t.projects.prevImage}>
         <ChevronLeft size={20} />
       </button>
-      <button className="gallery-btn gallery-next" onClick={next} aria-label="Next image">
+      <button className="gallery-btn gallery-next" onClick={next} aria-label={t.projects.nextImage}>
         <ChevronRight size={20} />
       </button>
       <div className="gallery-dots">
@@ -49,7 +45,7 @@ function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
             key={i}
             className={`gallery-dot ${i === current ? 'active' : ''}`}
             onClick={() => setCurrent(i)}
-            aria-label={`Go to image ${i + 1}`}
+            aria-label={t.projects.goToImage(i + 1)}
           />
         ))}
       </div>
@@ -58,6 +54,7 @@ function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
 }
 
 function FeaturedProject({ project }: { project: Project }) {
+  const { t } = useLanguage();
   const images = project.images ?? (project.imageUrl ? [project.imageUrl] : []);
 
   return (
@@ -72,13 +69,13 @@ function FeaturedProject({ project }: { project: Project }) {
           {images.length <= 1 && (
             <div className="project-featured-overlay">
               <span className={`project-status-badge ${statusClass[project.status]}`}>
-                {statusLabel[project.status]}
+                {t.projects.status[project.status]}
               </span>
             </div>
           )}
         </div>
         <div className="project-featured-info">
-          <span className="project-featured-label">Featured Project</span>
+          <span className="project-featured-label">{t.projects.featured}</span>
           <h3 className="project-featured-title">{project.title}</h3>
           <p className="project-featured-description">{project.description}</p>
           {project.techStack.length > 0 && (
@@ -95,13 +92,13 @@ function FeaturedProject({ project }: { project: Project }) {
               {project.githubUrl && (
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link-btn">
                   <Github size={18} />
-                  View Code
+                  {t.projects.viewCode}
                 </a>
               )}
               {project.demoUrl && (
                 <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="project-link-btn primary">
                   <ExternalLink size={18} />
-                  Live Demo
+                  {t.projects.liveDemo}
                 </a>
               )}
             </div>
@@ -113,6 +110,7 @@ function FeaturedProject({ project }: { project: Project }) {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { t } = useLanguage();
   return (
     <ScrollReveal delay={index * 0.1}>
       <InteractiveCard className="project-card" tilt maxTilt={4}>
@@ -127,7 +125,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </span>
           )}
           <span className={`project-status-badge ${statusClass[project.status]}`}>
-            {statusLabel[project.status]}
+            {t.projects.status[project.status]}
           </span>
         </div>
         <div className="project-info">
@@ -144,12 +142,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <div className="project-links">
               {project.githubUrl && (
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                  <Github size={16} /> Code
+                  <Github size={16} /> {t.projects.code}
                 </a>
               )}
               {project.demoUrl && (
                 <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                  <ExternalLink size={16} /> Demo
+                  <ExternalLink size={16} /> {t.projects.demo}
                 </a>
               )}
             </div>
@@ -161,12 +159,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function Projects({ projects }: ProjectsProps) {
+  const { t } = useLanguage();
   const featured = projects.filter((p) => p.imageUrl && p.status === 'completed');
   const others = projects.filter((p) => !p.imageUrl || p.status !== 'completed');
 
   return (
     <section id="projects" className="section">
-      <SectionTitle index={5}>Projects</SectionTitle>
+      <SectionTitle index={5}>{t.sections.projects}</SectionTitle>
 
       {featured.map((project, index) => (
         <FeaturedProject key={`featured-${project.title}-${index}`} project={project} />

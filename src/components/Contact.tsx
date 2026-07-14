@@ -2,6 +2,7 @@ import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
 import { GlowingEffect } from './ui/glowing-effect';
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 import type { CVData } from '../types';
 
 interface ContactProps {
@@ -9,12 +10,13 @@ interface ContactProps {
 }
 
 export default function Contact({ data }: ContactProps) {
+  const { t } = useLanguage();
   const github = data.socialNetworks.find((s) => s.network === 'GitHub');
   const linkedin = data.socialNetworks.find((s) => s.network === 'LinkedIn');
 
   return (
     <section id="contact" className="section">
-      <SectionTitle index={7}>Get In Touch</SectionTitle>
+      <SectionTitle index={7}>{t.sections.contact}</SectionTitle>
       <ScrollReveal>
         <div className="contact-card-shell">
           <GlowingEffect
@@ -27,12 +29,11 @@ export default function Contact({ data }: ContactProps) {
           />
           <div className="contact-content contact-card">
             <p className="contact-headline">
-              Let's build something{' '}
-              <span className="gradient-text gradient-animate">great</span>.
+              {t.contact.headlinePre}{' '}
+              <span className="gradient-text gradient-animate">{t.contact.headlineAccent}</span>.
             </p>
             <p className="contact-text">
-              I'm currently open to new opportunities. Whether you have a question or
-              just want to say hi, feel free to reach out!
+              {t.contact.text}
             </p>
             <div className="contact-links">
               <a href={`mailto:${data.email}`} className="contact-item">

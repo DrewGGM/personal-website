@@ -1,7 +1,9 @@
 /**
- * CV generator — single source of truth: src/data/cvData.ts
- * Builds an ATS-friendly, print-optimized HTML resume and renders it to
- * public/Andrew_Garcia_Mosquera_CV.pdf with headless Chrome/Edge.
+ * CV generator — single source of truth: src/data/cvData.ts (EN) + src/data/cvData.es.ts (ES)
+ * Builds an ATS-friendly, print-optimized HTML resume and renders it with
+ * headless Chrome/Edge to:
+ *   - public/Andrew_Garcia_Mosquera_CV.pdf     (English)
+ *   - public/Andrew_Garcia_Mosquera_CV_ES.pdf  (Spanish)
  *
  *   npm run cv
  *
@@ -16,29 +18,67 @@ import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import type { CVData } from '../src/types';
 import { cvData } from '../src/data/cvData';
+import { cvDataES } from '../src/data/cvData.es';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const OUT_PDF = join(ROOT, 'public', 'Andrew_Garcia_Mosquera_CV.pdf');
 
 const ACCENT = '#4f46e5';
 const INK = '#111827';
 const MUTED = '#4b5563';
 
-function fmtDate(d: string): string {
-  if (!d || d === 'present') return 'Present';
-  const [y, m] = d.split('-');
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return m ? `${months[Number(m) - 1]} ${y}` : y;
+// Etiquetas i18n: todo lo que no vive en cvData (títulos de sección, meses, "Presente").
+interface CVLabels {
+  htmlLang: string;
+  present: string;
+  months: string[];
+  sections: {
+    summary: string;
+    experience: string;
+    projects: string;
+    skills: string;
+    education: string;
+    certifications: string;
+  };
+  spokenLanguages: string;
+  stack: string;
 }
+
+const EN_LABELS: CVLabels = {
+  htmlLang: 'en',
+  present: 'Present',
+  months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  sections: {
+    summary: 'Summary',
+    experience: 'Experience',
+    projects: 'Projects',
+    skills: 'Skills',
+    education: 'Education',
+    certifications: 'Certifications',
+  },
+  spokenLanguages: 'Spoken Languages',
+  stack: 'Stack',
+};
+
+const ES_LABELS: CVLabels = {
+  htmlLang: 'es',
+  present: 'Actual',
+  months: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+  sections: {
+    summary: 'Perfil',
+    experience: 'Experiencia',
+    projects: 'Proyectos',
+    skills: 'Habilidades',
+    education: 'Educación',
+    certifications: 'Certificaciones',
+  },
+  spokenLanguages: 'Idiomas',
+  stack: 'Stack',
+};
+
 const esc = (s: string) => (s ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
 
-const linkedin = cvData.socialNetworks.find((s) => s.network === 'LinkedIn');
-const github = cvData.socialNetworks.find((s) => s.network === 'GitHub');
-
-// Proyectos destacados en el CV: los completados con link (máx 3).
-// En el CV va solo la PRIMERA frase de la descripción (regla de 1 página); el detalle vive en la web.
-const cvProjects = cvData.projects.filter((p) => p.status === 'completed' && (p.demoUrl || p.githubUrl)).slice(0, 3);
 // Toma frases completas hasta ~140 caracteres (evita descripciones demasiado escuetas o largas).
 const shortDesc = (s: string) => {
   const sentences = s.split(/(?<=\.)\s+/);
@@ -52,11 +92,25 @@ const shortDesc = (s: string) => {
   return out;
 };
 
-const html = `<!doctype html>
-<html lang="en">
+function buildHtml(data: CVData, labels: CVLabels): string {
+  const fmtDate = (d: string): string => {
+    if (!d || d === 'present') return labels.present;
+    const [y, m] = d.split('-');
+    return m ? `${labels.months[Number(m) - 1]} ${y}` : y;
+  };
+
+  const linkedin = data.socialNetworks.find((s) => s.network === 'LinkedIn');
+  const github = data.socialNetworks.find((s) => s.network === 'GitHub');
+
+  // Proyectos destacados en el CV: los completados con link (máx 3).
+  // En el CV va solo la PRIMERA frase de la descripción (regla de 1 página); el detalle vive en la web.
+  const cvProjects = data.projects.filter((p) => p.status === 'completed' && (p.demoUrl || p.githubUrl)).slice(0, 3);
+
+  return `<!doctype html>
+<html lang="${labels.htmlLang}">
 <head>
 <meta charset="utf-8">
-<title>${esc(cvData.name)} — CV</title>
+<title>${esc(data.name)} — CV</title>
 <style>
   @page { size: Letter; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -98,26 +152,26 @@ const html = `<!doctype html>
 </head>
 <body>
   <header>
-    <h1>${esc(cvData.name)}</h1>
-    <div class="headline">${esc(cvData.headline)}</div>
+    <h1>${esc(data.name)}</h1>
+    <div class="headline">${esc(data.headline)}</div>
     <div class="contact">
-      <span>${esc(cvData.location)}</span>
-      <span><a href="mailto:${cvData.email}">${cvData.email}</a></span>
-      <span>${esc(cvData.phone)}</span>
-      <span><a href="${cvData.website}">andrewgarcia.dev</a></span>
+      <span>${esc(data.location)}</span>
+      <span><a href="mailto:${data.email}">${data.email}</a></span>
+      <span>${esc(data.phone)}</span>
+      <span><a href="${data.website}">andrewgarcia.dev</a></span>
       ${linkedin ? `<span><a href="${linkedin.url}">linkedin.com/in/${esc(linkedin.username)}</a></span>` : ''}
       ${github ? `<span><a href="${github.url}">github.com/${esc(github.username)}</a></span>` : ''}
     </div>
   </header>
 
   <section>
-    <h2>Summary</h2>
-    <p class="summary">${esc(cvData.summary)}</p>
+    <h2>${esc(labels.sections.summary)}</h2>
+    <p class="summary">${esc(data.summary)}</p>
   </section>
 
   <section>
-    <h2>Experience</h2>
-    ${cvData.experience.map((e) => `
+    <h2>${esc(labels.sections.experience)}</h2>
+    ${data.experience.map((e) => `
     <div class="item">
       <div class="item-head">
         <div><span class="role">${esc(e.position)}</span> — <span class="org">${esc(e.company)}</span></div>
@@ -130,7 +184,7 @@ const html = `<!doctype html>
   </section>
 
   <section>
-    <h2>Projects</h2>
+    <h2>${esc(labels.sections.projects)}</h2>
     ${cvProjects.map((p) => `
     <div class="item">
       <div class="item-head">
@@ -141,21 +195,21 @@ const html = `<!doctype html>
           ${p.githubUrl ? `<a href="${p.githubUrl}">${p.githubUrl.replace('https://github.com/', 'gh:')}</a>` : ''}
         </div>
       </div>
-      <p>${esc(shortDesc(p.description))} <b>Stack:</b> ${p.techStack.map(esc).join(', ')}.</p>
+      <p>${esc(shortDesc(p.description))} <b>${esc(labels.stack)}:</b> ${p.techStack.map(esc).join(', ')}.</p>
     </div>`).join('')}
   </section>
 
   <section>
-    <h2>Skills</h2>
+    <h2>${esc(labels.sections.skills)}</h2>
     <div class="skills-grid">
-      ${cvData.skills.map((s) => `<div class="skill-row"><b>${esc(s.label)}:</b> <span>${esc(s.details)}</span></div>`).join('')}
-      <div class="skill-row"><b>Spoken Languages:</b> <span>${cvData.languages.map((l) => `${esc(l.label)} (${esc(l.details)})`).join(' · ')}</span></div>
+      ${data.skills.map((s) => `<div class="skill-row"><b>${esc(s.label)}:</b> <span>${esc(s.details)}</span></div>`).join('')}
+      <div class="skill-row"><b>${esc(labels.spokenLanguages)}:</b> <span>${data.languages.map((l) => `${esc(l.label)} (${esc(l.details)})`).join(' · ')}</span></div>
     </div>
   </section>
 
   <section>
-    <h2>Education</h2>
-    ${cvData.education
+    <h2>${esc(labels.sections.education)}</h2>
+    ${data.education
       // el curso corto de Next U ya aparece en Certifications — en el CV de 1 página no se duplica
       .filter((ed) => ed.institution !== 'Next U')
       .map((ed) => `
@@ -163,17 +217,14 @@ const html = `<!doctype html>
   </section>
 
   <section>
-    <h2>Certifications</h2>
-    <p class="cert-line">${cvData.certifications.map((c) => `${esc(c.title)} (${esc(c.issuer)}, ${esc(c.date.split(' ').pop() ?? c.date)})`).join(' · ')}</p>
+    <h2>${esc(labels.sections.certifications)}</h2>
+    <p class="cert-line">${data.certifications.map((c) => `${esc(c.title)} (${esc(c.issuer)}, ${esc(c.date.split(' ').pop() ?? c.date)})`).join(' · ')}</p>
   </section>
 </body>
 </html>`;
+}
 
-// Render a PDF con Chrome/Edge headless.
-const tmp = mkdtempSync(join(tmpdir(), 'cv-'));
-const htmlPath = join(tmp, 'cv.html');
-writeFileSync(htmlPath, html);
-
+// Render un PDF con Chrome/Edge headless.
 const browsers = [
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
   'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
@@ -183,13 +234,23 @@ const browsers = [
 const browser = browsers.find((b) => existsSync(b));
 if (!browser) throw new Error('No se encontró Chrome/Edge para renderizar el PDF');
 
-const pdfTmp = join(tmp, 'cv.pdf');
-execFileSync(browser, [
-  '--headless', '--disable-gpu', '--no-pdf-header-footer',
-  `--print-to-pdf=${pdfTmp}`,
-  pathToFileURL(htmlPath).href,
-], { stdio: 'pipe' });
+function renderPdf(data: CVData, labels: CVLabels, outFile: string) {
+  const tmp = mkdtempSync(join(tmpdir(), 'cv-'));
+  const htmlPath = join(tmp, 'cv.html');
+  writeFileSync(htmlPath, buildHtml(data, labels));
 
-copyFileSync(pdfTmp, OUT_PDF);
-rmSync(tmp, { recursive: true, force: true });
-console.log(`✅ CV regenerado desde cvData.ts → ${OUT_PDF}`);
+  const pdfTmp = join(tmp, 'cv.pdf');
+  execFileSync(browser!, [
+    '--headless', '--disable-gpu', '--no-pdf-header-footer',
+    `--print-to-pdf=${pdfTmp}`,
+    pathToFileURL(htmlPath).href,
+  ], { stdio: 'pipe' });
+
+  const outPath = join(ROOT, 'public', outFile);
+  copyFileSync(pdfTmp, outPath);
+  rmSync(tmp, { recursive: true, force: true });
+  console.log(`✅ CV regenerado → ${outPath}`);
+}
+
+renderPdf(cvData, EN_LABELS, 'Andrew_Garcia_Mosquera_CV.pdf');
+renderPdf(cvDataES, ES_LABELS, 'Andrew_Garcia_Mosquera_CV_ES.pdf');

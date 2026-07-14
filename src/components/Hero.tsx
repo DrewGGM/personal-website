@@ -4,11 +4,15 @@ import { Github, Linkedin, Download, ChevronDown } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import MagneticButton from './MagneticButton';
 import CountUp from './CountUp';
+import { useLanguage } from '../i18n/LanguageContext';
 import type { CVData } from '../types';
 
 interface HeroProps {
   data: CVData;
 }
+
+const CV_EN = '/Andrew_Garcia_Mosquera_CV.pdf';
+const CV_ES = '/Andrew_Garcia_Mosquera_CV_ES.pdf';
 
 const container = {
   hidden: { opacity: 0 },
@@ -24,16 +28,23 @@ const item = {
 };
 
 export default function Hero({ data }: HeroProps) {
+  const { lang, t } = useLanguage();
   const github = data.socialNetworks.find((s) => s.network === 'GitHub');
   const linkedin = data.socialNetworks.find((s) => s.network === 'LinkedIn');
 
   const completedProjects = data.projects.filter((p) => p.status === 'completed').length;
   const stats = [
-    { value: 3, suffix: '+', label: 'Years coding' },
-    { value: completedProjects, suffix: '', label: 'Projects shipped' },
-    { value: data.certifications.length, suffix: '', label: 'Certifications' },
-    { value: 1, suffix: '', label: 'Startup founded' },
+    { value: 3, suffix: '+', label: t.hero.stats.yearsCoding },
+    { value: completedProjects, suffix: '', label: t.hero.stats.projectsShipped },
+    { value: data.certifications.length, suffix: '', label: t.hero.stats.certifications },
+    { value: 1, suffix: '', label: t.hero.stats.startupFounded },
   ];
+
+  // TypeAnimation only reads its `sequence` once, so key it on `lang` to remount on switch.
+  const typewriterSequence = t.hero.typewriter.flatMap((phrase) => [phrase, 2000]);
+
+  const primaryCv = lang === 'es' ? CV_ES : CV_EN;
+  const otherCv = lang === 'es' ? CV_EN : CV_ES;
 
   return (
     <section id="home" className="hero">
@@ -47,10 +58,10 @@ export default function Hero({ data }: HeroProps) {
         <div className="hero-left">
           <motion.div className="hero-badge" variants={item}>
             <span className="badge-dot" />
-            Available for opportunities
+            {t.hero.badge}
           </motion.div>
           <motion.h1 className="hero-name" variants={item}>
-            Hi, I'm{' '}
+            {t.hero.greeting}{' '}
             <span className="gradient-text gradient-animate">
               {data.name.split(' ')[0]}
             </span>
@@ -58,26 +69,15 @@ export default function Hero({ data }: HeroProps) {
           <motion.div className="hero-typewriter" variants={item}>
             <span className="hero-typewriter-prefix">&gt;_ </span>
             <TypeAnimation
-              sequence={[
-                'Backend Developer',
-                2000,
-                'Software Engineer',
-                2000,
-                'Startup Founder',
-                2000,
-                'QA Engineer',
-                2000,
-                'Problem Solver',
-                2000,
-              ]}
+              key={lang}
+              sequence={typewriterSequence}
               wrapper="span"
               speed={50}
               repeat={Infinity}
             />
           </motion.div>
           <motion.p className="hero-description" variants={item}>
-            {data.headline} — building software for real businesses from{' '}
-            {data.location}.
+            {t.hero.description(data.headline, data.location)}
           </motion.p>
           <motion.div className="hero-actions" variants={item}>
             {github && (
@@ -107,13 +107,15 @@ export default function Hero({ data }: HeroProps) {
               </MagneticButton>
             )}
             <MagneticButton strength={0.25}>
-              <a
-                href="/Andrew_Garcia_Mosquera_CV.pdf"
-                download
-                className="btn-primary"
-              >
+              <a href={primaryCv} download className="btn-primary">
                 <Download size={18} />
-                Download CV
+                {t.hero.downloadPrimary}
+              </a>
+            </MagneticButton>
+            <MagneticButton strength={0.25}>
+              <a href={otherCv} download className="btn-outline">
+                <Download size={18} />
+                {t.hero.downloadOther}
               </a>
             </MagneticButton>
           </motion.div>
@@ -147,7 +149,7 @@ export default function Hero({ data }: HeroProps) {
                 {'  '}<span className="code-variable">name</span>:{' '}
                 <span className="code-string">"{data.name}"</span>,{'\n'}
                 {'  '}<span className="code-variable">role</span>:{' '}
-                <span className="code-string">"Software Engineer"</span>,{'\n'}
+                <span className="code-string">"{t.hero.codeRole}"</span>,{'\n'}
                 {'  '}<span className="code-variable">location</span>:{' '}
                 <span className="code-string">"{data.location}"</span>,{'\n'}
                 {'  '}<span className="code-variable">skills</span>:{' '}
@@ -164,7 +166,7 @@ export default function Hero({ data }: HeroProps) {
                 {'  '}<span className="code-variable">available</span>:{' '}
                 <span className="code-keyword">true</span>{'\n'}
                 <span className="code-bracket">{'}'}</span>;{'\n'}
-                <span className="code-comment">{'// Open to new challenges!'}</span>
+                <span className="code-comment">{t.hero.codeComment}</span>
               </code>
             </pre>
           </div>
@@ -177,9 +179,9 @@ export default function Hero({ data }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        aria-label="Scroll to About"
+        aria-label={t.hero.scrollAria}
       >
-        <span>Scroll</span>
+        <span>{t.hero.scroll}</span>
         <ChevronDown size={24} />
       </motion.a>
     </section>

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Rocket, Landmark, Layers, FileCheck2, MapPin, ArrowUpRight } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface GridItemProps {
   area: string;
@@ -71,54 +72,36 @@ function GridItem({ area, icon, title, description, href, image, imageAlt }: Gri
   );
 }
 
+// Layout/visuals are language-independent; the text comes from the i18n dict
+// (t.highlights), matched to these cells by order.
+const cells = [
+  { area: 'md:[grid-area:1/5/3/9]', icon: <Rocket className="h-5 w-5" />, href: 'https://lyroo.com.co', image: '/highlights/lyroo.png' },
+  { area: 'md:[grid-area:1/1/2/5]', icon: <Landmark className="h-5 w-5" />, image: '/highlights/banking.png' },
+  { area: 'md:[grid-area:2/1/3/5]', icon: <Layers className="h-5 w-5" />, image: '/highlights/backend.png' },
+  { area: 'md:[grid-area:1/9/2/13]', icon: <FileCheck2 className="h-5 w-5" />, image: '/highlights/dian.png' },
+  { area: 'md:[grid-area:2/9/3/13]', icon: <MapPin className="h-5 w-5" />, image: '/highlights/location.png' },
+] as const;
+
 /**
  * "What I'm working on" bento grid — themed AI-generated backgrounds on the
  * 21st.dev Glowing Effect (Aceternity), all in the site's indigo/violet palette.
  */
 export default function Highlights() {
+  const { t } = useLanguage();
   return (
     <ul className="highlights-bento grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-2">
-      <GridItem
-        area="md:[grid-area:1/5/3/9]"
-        icon={<Rocket className="h-5 w-5" />}
-        title="Founder of Lyroo"
-        href="https://lyroo.com.co"
-        image="/highlights/lyroo.png"
-        imageAlt=""
-        description="Building LyrooPOS — an offline-first point of sale with an embedded DIAN electronic-invoicing engine. v1.2 in production with the first active customers, plus Lyroo Build, a custom software studio."
-      />
-      <GridItem
-        area="md:[grid-area:1/1/2/5]"
-        icon={<Landmark className="h-5 w-5" />}
-        title="Core banking @ COFINCAFE"
-        image="/highlights/banking.png"
-        imageAlt=""
-        description="Developing and supporting a cooperative's core banking system on Apache Fineract & Mifos."
-      />
-      <GridItem
-        area="md:[grid-area:2/1/3/5]"
-        icon={<Layers className="h-5 w-5" />}
-        title="Backend & architecture"
-        image="/highlights/backend.png"
-        imageAlt=""
-        description="Java · Spring Boot · Go · hexagonal architecture · microservices · clean code."
-      />
-      <GridItem
-        area="md:[grid-area:1/9/2/13]"
-        icon={<FileCheck2 className="h-5 w-5" />}
-        title="DIAN e-invoicing core"
-        image="/highlights/dian.png"
-        imageAlt=""
-        description="Embedded UBL 2.1 engine — unlimited electronic invoicing with no per-folio fees or third-party APIs."
-      />
-      <GridItem
-        area="md:[grid-area:2/9/3/13]"
-        icon={<MapPin className="h-5 w-5" />}
-        title="Armenia, Colombia"
-        image="/highlights/location.png"
-        imageAlt=""
-        description="Remote-first · open to new opportunities."
-      />
+      {cells.map((cell, i) => (
+        <GridItem
+          key={cell.area}
+          area={cell.area}
+          icon={cell.icon}
+          href={'href' in cell ? cell.href : undefined}
+          image={cell.image}
+          imageAlt=""
+          title={t.highlights[i].title}
+          description={t.highlights[i].description}
+        />
+      ))}
     </ul>
   );
 }

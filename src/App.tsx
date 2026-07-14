@@ -11,24 +11,28 @@ import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import AuroraBackground from './components/AuroraBackground';
 import CursorGlow from './components/CursorGlow';
-import { cvData } from './data/cvData';
+import LanguageToggle from './components/LanguageToggle';
+import { useLanguage } from './i18n/LanguageContext';
 
 function App() {
+  const { cv } = useLanguage();
+
   return (
     <>
       <AuroraBackground />
       <CursorGlow />
       <ScrollProgress />
+      <LanguageToggle />
       <Navbar />
-      <Hero data={cvData} />
+      <Hero data={cv} />
       <div className="container">
-        <About data={cvData} />
-        <Experience experiences={cvData.experience} />
-        <Education education={cvData.education} />
-        <Skills skills={cvData.skills} />
-        <Projects projects={cvData.projects} />
-        <Certifications certifications={cvData.certifications} />
-        <Contact data={cvData} />
+        <About data={cv} />
+        <Experience experiences={cv.experience} />
+        <Education education={cv.education} />
+        <Skills skills={cv.skills} />
+        <Projects projects={cv.projects} />
+        <Certifications certifications={cv.certifications} />
+        <Contact data={cv} />
       </div>
       <Footer />
     </>

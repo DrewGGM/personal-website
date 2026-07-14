@@ -1,25 +1,19 @@
 import ScrollReveal from './ScrollReveal';
 import SectionTitle from './SectionTitle';
 import InteractiveCard from './InteractiveCard';
+import { useLanguage } from '../i18n/LanguageContext';
+import { formatDate } from '../i18n/translations';
 import type { Education as EducationType } from '../types';
 
 interface EducationProps {
   education: EducationType[];
 }
 
-const formatDate = (date: string) => {
-  if (!date || date === 'present') return 'Present';
-  const [year, monthStr] = date.split('-');
-  const month = parseInt(monthStr);
-  if (!year || month < 1 || month > 12) return date;
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return `${months[month - 1]} ${year}`;
-};
-
 export default function Education({ education }: EducationProps) {
+  const { t } = useLanguage();
   return (
     <section id="education" className="section">
-      <SectionTitle index={3}>Education</SectionTitle>
+      <SectionTitle index={3}>{t.sections.education}</SectionTitle>
       <div className="timeline">
         {education.map((edu, index) => (
           <ScrollReveal key={`${edu.institution}-${edu.startDate}`} delay={index * 0.1}>
@@ -31,7 +25,7 @@ export default function Education({ education }: EducationProps) {
                 </div>
                 <div className="timeline-meta">
                   <span className="timeline-date">
-                    {formatDate(edu.startDate)} — {formatDate(edu.endDate)}
+                    {formatDate(edu.startDate, t)} — {formatDate(edu.endDate, t)}
                   </span>
                   <p className="timeline-location">{edu.location}</p>
                 </div>

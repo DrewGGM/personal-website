@@ -1,16 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, FolderGit2, Mail } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const navItems = [
-  { id: 'home', icon: Home, label: 'Home' },
-  { id: 'about', icon: User, label: 'About' },
-  { id: 'experience', icon: Briefcase, label: 'Experience' },
-  { id: 'projects', icon: FolderGit2, label: 'Projects' },
-  { id: 'contact', icon: Mail, label: 'Contact' },
-];
+  { id: 'home', icon: Home, labelKey: 'home' },
+  { id: 'about', icon: User, labelKey: 'about' },
+  { id: 'experience', icon: Briefcase, labelKey: 'experience' },
+  { id: 'projects', icon: FolderGit2, labelKey: 'projects' },
+  { id: 'contact', icon: Mail, labelKey: 'contact' },
+] as const;
 
 export default function Navbar() {
+  const { t } = useLanguage();
   const [active, setActive] = useState('home');
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
 
@@ -53,18 +55,21 @@ export default function Navbar() {
       transition={{ delay: 1, duration: 0.5 }}
       aria-label="Main navigation"
     >
-      {navItems.map((navItem) => (
+      {navItems.map((navItem) => {
+        const label = t.nav[navItem.labelKey];
+        return (
         <button
           key={navItem.id}
           className={`nav-item ${active === navItem.id ? 'active' : ''}`}
           onClick={() => scrollTo(navItem.id)}
-          aria-label={navItem.label}
+          aria-label={label}
           aria-current={active === navItem.id ? 'true' : undefined}
-          title={navItem.label}
+          title={label}
         >
           <navItem.icon size={20} aria-hidden="true" />
         </button>
-      ))}
+        );
+      })}
     </motion.nav>
   );
 }
