@@ -44,7 +44,6 @@ export default function Hero({ data }: HeroProps) {
   const typewriterSequence = t.hero.typewriter.flatMap((phrase) => [phrase, 2000]);
 
   const primaryCv = lang === 'es' ? CV_ES : CV_EN;
-  const otherCv = lang === 'es' ? CV_EN : CV_ES;
 
   return (
     <section id="home" className="hero">
@@ -109,13 +108,7 @@ export default function Hero({ data }: HeroProps) {
             <MagneticButton strength={0.25}>
               <a href={primaryCv} download className="btn-primary">
                 <Download size={18} />
-                {t.hero.downloadPrimary}
-              </a>
-            </MagneticButton>
-            <MagneticButton strength={0.25}>
-              <a href={otherCv} download className="btn-outline">
-                <Download size={18} />
-                {t.hero.downloadOther}
+                {t.hero.downloadCv}
               </a>
             </MagneticButton>
           </motion.div>

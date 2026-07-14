@@ -22,8 +22,7 @@ export interface Translation {
     greeting: string;
     typewriter: string[];
     description: (headline: string, location: string) => string;
-    downloadPrimary: string;
-    downloadOther: string;
+    downloadCv: string;
     codeRole: string;
     codeComment: string;
     scroll: string;
@@ -90,8 +89,7 @@ const en: Translation = {
     ],
     description: (headline, location) =>
       `${headline} — building software for real businesses from ${location}.`,
-    downloadPrimary: 'Download CV',
-    downloadOther: 'CV (Español)',
+    downloadCv: 'Download CV',
     codeRole: 'Software Engineer',
     codeComment: '// Open to new challenges!',
     scroll: 'Scroll',
@@ -191,8 +189,7 @@ const es: Translation = {
     ],
     description: (headline, location) =>
       `${headline} — construyendo software para negocios reales desde ${location}.`,
-    downloadPrimary: 'Descargar CV',
-    downloadOther: 'CV (English)',
+    downloadCv: 'Descargar CV',
     codeRole: 'Ingeniero de Software',
     codeComment: '// ¡Abierto a nuevos retos!',
     scroll: 'Desliza',
