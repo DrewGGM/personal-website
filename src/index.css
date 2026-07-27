@@ -638,6 +638,32 @@ body {
   font-size: 0.95rem;
 }
 
+/* Company name heading a group of roles held there. */
+.timeline-company {
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+/* Earlier roles at the same company, set back so the current one leads. */
+.timeline-role + .timeline-role {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border);
+}
+
+.timeline-role.is-previous .timeline-title {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+}
+
+/* A signed role that hasn't started yet. */
+.timeline-date.is-upcoming {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
 .timeline-meta {
   text-align: right;
   flex-shrink: 0;

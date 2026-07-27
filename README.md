@@ -42,6 +42,37 @@ To adapt it for your own fork: edit `src/data/cvData.ts` (data) and the constant
 The three projects that make the PDF are the ones flagged `inCv: true` in `cvData.ts` (the
 one-page rule caps it at 3) — not simply the first three in the list.
 
+### Automatic page fitting
+
+The PDF targets one page, but never by making itself unreadable. The generator renders,
+counts the pages in the output, and retries through `FIT_STEPS` until it fits:
+
+1. **Whitespace first** — margins, padding and leading compress down to 60%. Cheap, and
+   barely noticeable.
+2. **Type last, barely** — the font floor is 97% (≈9.02pt), because below 9pt older ATS
+   parsers and human readers both start to struggle.
+3. **Otherwise, multi-page** — if it still doesn't fit, it re-renders at full spacing and
+   flows onto as many pages as it needs.
+
+Multi-page output is properly formed: margins live in `@page` (not `body` padding, which
+only applies once and would leave page 2 flush against the paper edge), section headings
+carry `break-after: avoid` so none is orphaned at a page foot, and `.item` blocks carry
+`break-inside: avoid` so a job or project never splits across a page boundary.
+
+The run reports what it chose: `(1 pág. · espaciado 60%, letra 98%)`.
+
+### Dates are derived from the current date
+
+`endDate: "present"` renders as Present/Actual, and — importantly — a role whose `startDate`
+month **hasn't arrived yet** renders as "Starting Aug 2026" / "Desde ago 2026" instead of
+claiming to be current. Once that month arrives the same data renders as an ongoing role
+with no edit. Experience is also **sorted by date** and **grouped by company**, so adding a
+role to `cvData.ts` puts it in the right place automatically — you never hand-order the array.
+
+On the site a promotion shows as one company card with its roles stacked (the current one
+leading); in the PDF each role repeats the company name on its own line, which is the safer
+shape for ATS parsers.
+
 If Chrome isn't in a standard location, point the generator at a binary with `CHROME_PATH`:
 
 ```bash

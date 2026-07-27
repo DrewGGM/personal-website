@@ -76,7 +76,12 @@ export interface Translation {
     text: string;
   };
   footer: { rights: string };
-  dates: { present: string; months: string[] };
+  dates: {
+    present: string;
+    months: string[];
+    /** Role that hasn't started yet, e.g. "Starting Aug 2026". */
+    starting: (date: string) => string;
+  };
 }
 
 const en: Translation = {
@@ -192,6 +197,7 @@ const en: Translation = {
   dates: {
     present: 'Present',
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    starting: (date) => `Starting ${date}`,
   },
 };
 
@@ -308,6 +314,7 @@ const es: Translation = {
   dates: {
     present: 'Actual',
     months: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+    starting: (date) => `Desde ${date}`,
   },
 };
 
@@ -320,4 +327,63 @@ export function formatDate(date: string, t: Translation): string {
   const month = parseInt(monthStr, 10);
   if (!year || month < 1 || month > 12) return date;
   return `${t.dates.months[month - 1]} ${year}`;
+}
+
+/** `YYYY-MM` → comparable integer. `present` sorts after any real date. */
+export function dateKey(date: string): number {
+  if (!date || date === 'present') return Number.MAX_SAFE_INTEGER;
+  const [year, monthStr] = date.split('-');
+  return Number(year) * 12 + (parseInt(monthStr, 10) || 1);
+}
+
+/** Month-granular "now", so comparisons match the `YYYY-MM` data. */
+function nowKey(now: Date): number {
+  return now.getFullYear() * 12 + (now.getMonth() + 1);
+}
+
+/** A role whose start month hasn't arrived yet (signed, not yet begun). */
+export function isFuture(startDate: string, now: Date = new Date()): boolean {
+  return dateKey(startDate) > nowKey(now);
+}
+
+/**
+ * Renders the date range for a role, derived from the current date:
+ *  - not started yet  → "Starting Aug 2026"
+ *  - ongoing          → "Jan 2026 – Present"
+ *  - finished         → "Jan 2026 – Jul 2026"
+ *
+ * This is why a future role never claims to be current: once its month
+ * arrives the same data renders as ongoing with no edit.
+ */
+export function formatRange(
+  startDate: string,
+  endDate: string,
+  t: Translation,
+  now: Date = new Date(),
+): string {
+  if (isFuture(startDate, now)) return t.dates.starting(formatDate(startDate, t));
+  return `${formatDate(startDate, t)} — ${formatDate(endDate, t)}`;
+}
+
+/**
+ * Newest first, grouping every role at the same company together so a
+ * promotion reads as one continuous stint instead of scattered entries.
+ * Groups are ordered by their most recent role.
+ */
+export function groupExperience<T extends { company: string; startDate: string }>(
+  experiences: T[],
+): { company: string; roles: T[] }[] {
+  const groups = new Map<string, T[]>();
+  for (const exp of experiences) {
+    const existing = groups.get(exp.company);
+    if (existing) existing.push(exp);
+    else groups.set(exp.company, [exp]);
+  }
+
+  return [...groups.entries()]
+    .map(([company, roles]) => ({
+      company,
+      roles: [...roles].sort((a, b) => dateKey(b.startDate) - dateKey(a.startDate)),
+    }))
+    .sort((a, b) => dateKey(b.roles[0].startDate) - dateKey(a.roles[0].startDate));
 }

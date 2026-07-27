@@ -25,7 +25,7 @@ export const cvDataES: CVData = {
       url: "https://github.com/DrewGGM"
     }
   ],
-  summary: "Ingeniero de software y fundador de Lyroo S.A.S, una startup colombiana que desarrolla LyrooPOS — un punto de venta offline-first con un motor de facturación electrónica DIAN embebido. Especializado en desarrollo backend y arquitectura de aplicaciones (Java/Spring Boot, Go, arquitectura hexagonal). Actualmente contribuyo a sistemas de core bancario en COFINCAFE mientras lidero producto e ingeniería en Lyroo. Sólida base en QA, código limpio y metodologías ágiles.",
+  summary: "Ingeniero de software y fundador de Lyroo S.A.S, una startup colombiana que desarrolla LyrooPOS — un punto de venta offline-first con un motor de facturación electrónica DIAN embebido. Especializado en desarrollo backend y arquitectura de aplicaciones (Java/Spring Boot, Go, arquitectura hexagonal). Actualmente desarrollo sistemas de core bancario en COFINCAFE y software full-stack para clientes en JAMS Technologies, mientras lidero producto e ingeniería en Lyroo. Sólida base en QA, código limpio y metodologías ágiles.",
   education: [
     {
       institution: "Institución Universitaria EAM",
@@ -56,9 +56,33 @@ export const cvDataES: CVData = {
   experience: [
     {
       company: "FINANCIERA COFINCAFE - Cooperativa de Ahorro y Crédito",
+      position: "Desarrollador de Software Junior",
+      startDate: "2026-08",
+      endDate: "present",
+      location: "Armenia, Quindío, Colombia",
+      summary: "Vinculado como desarrollador tras la práctica, continuando en la plataforma de core bancario de la cooperativa.",
+      highlights: [
+        "Desarrollo y mantenimiento de funcionalidades sobre el core bancario Apache Fineract",
+        "Soporte a productos financieros y configuración de módulos bancarios en producción"
+      ]
+    },
+    {
+      company: "JAMS Technologies",
+      position: "Desarrollador Full Stack",
+      startDate: "2026-04",
+      endDate: "present",
+      location: "Colombia · Remoto",
+      summary: "Desarrollo de software web y móvil a la medida para clientes en un estudio de desarrollo colombiano, desde MVPs hasta plataformas empresariales escalables.",
+      highlights: [
+        "Desarrollo de funcionalidades full-stack entre front-end, API y base de datos",
+        "Entrega de proyectos de cliente a producción según el alcance y los plazos acordados"
+      ]
+    },
+    {
+      company: "FINANCIERA COFINCAFE - Cooperativa de Ahorro y Crédito",
       position: "Practicante de Desarrollo",
       startDate: "2026-01",
-      endDate: "present",
+      endDate: "2026-07",
       location: "Armenia, Quindío, Colombia",
       summary: "Apoyo en el desarrollo y soporte del sistema de core bancario usando Apache Fineract y Mifos.",
       highlights: [

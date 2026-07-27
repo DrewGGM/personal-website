@@ -19,7 +19,7 @@ export const cvData: CVData = {
       url: "https://github.com/DrewGGM"
     }
   ],
-  summary: "Software engineer and founder of Lyroo S.A.S, a Colombian startup building LyrooPOS — an offline-first point of sale with an embedded DIAN electronic invoicing engine. Specialized in backend development and application architecture (Java/Spring Boot, Go, hexagonal architecture). Currently contributing to core banking systems at COFINCAFE while leading product and engineering at Lyroo. Strong foundation in QA, clean code and agile methodologies.",
+  summary: "Software engineer and founder of Lyroo S.A.S, a Colombian startup building LyrooPOS — an offline-first point of sale with an embedded DIAN electronic invoicing engine. Specialized in backend development and application architecture (Java/Spring Boot, Go, hexagonal architecture). Currently building core banking systems at COFINCAFE and full-stack client software at JAMS Technologies, while leading product and engineering at Lyroo. Strong foundation in QA, clean code and agile methodologies.",
   education: [
     {
       institution: "Institucion Universitaria EAM",
@@ -50,15 +50,39 @@ export const cvData: CVData = {
   experience: [
     {
       company: "FINANCIERA COFINCAFE - Cooperativa de Ahorro y Credito",
-      position: "Development Intern",
-      startDate: "2026-01",
+      position: "Junior Software Developer",
+      startDate: "2026-08",
       endDate: "present",
       location: "Armenia, Quindio, Colombia",
-      summary: "Assisting in the development and support of the core banking system using Apache Fineract and Mifos.",
+      summary: "Hired into a permanent engineering role after the internship, continuing on the cooperative's core banking platform.",
       highlights: [
-        "Helping implement financial products and configure banking modules",
-        "Resolving issues and contributing to system improvements",
-        "Working with Apache Fineract and Mifos open-source banking platform"
+        "Developing and maintaining features on the Apache Fineract core banking system",
+        "Supporting financial products and banking module configuration in production"
+      ]
+    },
+    {
+      company: "JAMS Technologies",
+      position: "Full Stack Developer",
+      startDate: "2026-04",
+      endDate: "present",
+      location: "Colombia · Remote",
+      summary: "Building custom web and mobile software for clients at a Colombian development studio, from MVPs through to scalable enterprise platforms.",
+      highlights: [
+        "Developing full-stack features across the front end, API and database",
+        "Delivering client projects to production against agreed scope and deadlines"
+      ]
+    },
+    {
+      company: "FINANCIERA COFINCAFE - Cooperativa de Ahorro y Credito",
+      position: "Development Intern",
+      startDate: "2026-01",
+      endDate: "2026-07",
+      location: "Armenia, Quindio, Colombia",
+      summary: "Assisted in the development and support of the core banking system using Apache Fineract and Mifos.",
+      highlights: [
+        "Helped implement financial products and configure banking modules",
+        "Resolved issues and contributed to system improvements",
+        "Worked with the Apache Fineract and Mifos open-source banking platform"
       ]
     },
     {
