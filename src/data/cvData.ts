@@ -96,39 +96,110 @@ export const cvData: CVData = {
     { label: "Spanish", details: "Native" },
     { label: "English", details: "Professional" }
   ],
+  ventures: [
+    {
+      name: "Lyroo",
+      tagline: "Software for Colombian SMBs",
+      description:
+        "The startup I founded and lead as principal engineer. Lyroo builds offline-first business software for Colombian SMBs, anchored on a DIAN electronic invoicing engine I wrote from scratch — so our products invoice without paying a third party per document. LyrooPOS is in production with paying customers; the rest of the product line is in active development.",
+      url: "https://lyroo.com.co",
+      role: "Founder & Lead Engineer",
+      products: ["lyroo-pos", "dian-engine", "liria", "lyfin", "lydeck"]
+    }
+  ],
   projects: [
+    // ── Lyroo (startup) ────────────────────────────────────────────────────
     {
-      title: "Lyroo — Startup (POS + DIAN E-Invoicing)",
-      description: "My startup: software for Colombian SMBs. LyrooPOS is an offline-first desktop point of sale with an embedded DIAN electronic invoicing engine (UBL 2.1) — unlimited invoicing with no per-document fees, encrypted cloud backups, real-time kitchen & waiter apps, and human WhatsApp support. Lyroo Build is our boutique custom software studio.",
-      techStack: ["Go", "Wails", "React", "PostgreSQL", "Next.js", "DIAN UBL 2.1"],
-      demoUrl: "https://lyroo.com.co",
-      imageUrl: "/projects/lyroo-web.png",
-      images: [
-        "/projects/lyroo-web.png",
-        "/projects/lyroo-web-2.png"
+      slug: "lyroo-pos",
+      title: "LyrooPOS — Restaurant Point of Sale",
+      tagline: "Offline-first desktop POS with embedded DIAN e-invoicing.",
+      description:
+        "Lyroo's flagship product: a desktop point of sale for Colombian restaurants, shipping in production at v1.2. Touchscreen-optimized sales, real-time kitchen and waiter apps over WebSocket, DIAN electronic invoicing built in, Bold card terminals, inventory with automatic deduction, split billing, and AI automation over MCP. It keeps selling with the internet down and syncs invoices to the DIAN when the connection returns.",
+      role: "Founder & Lead Engineer",
+      year: "2025 — present",
+      techStack: ["Go", "Wails", "React", "TypeScript", "PostgreSQL", "WebSocket"],
+      links: [
+        { label: "Live demo", url: "https://pos-system.v1.andrewgarcia.dev", kind: "demo" },
+        { label: "Demo source", url: "https://github.com/DrewGGM/demo-pos-system", kind: "repo" }
       ],
-      status: "completed"
-    },
-    {
-      title: "Restaurant POS System",
-      description: "Complete point-of-sale desktop application for Colombian restaurants. Features touchscreen-optimized sales, real-time kitchen/waiter apps, DIAN electronic invoicing, Bold payment terminals, inventory control with auto-deduction, split billing, and AI automation via MCP.",
-      techStack: ["Go", "React", "TypeScript", "PostgreSQL", "Material-UI", "WebSocket"],
-      githubUrl: "https://github.com/DrewGGM/demo-pos-system",
-      demoUrl: "https://pos-system.v1.andrewgarcia.dev",
       imageUrl: "/projects/pos-main.png",
       images: [
         "/projects/pos-main.png",
         "/projects/pos-dashboard.png",
         "/projects/pos-products.png"
       ],
-      status: "completed"
+      status: "completed",
+      category: "startup",
+      featured: true,
+      inCv: true
     },
     {
+      slug: "dian-engine",
+      title: "Lyroo DIAN Engine",
+      tagline: "Colombian e-invoicing as an embeddable Go library.",
+      description:
+        "The proprietary core behind every Lyroo product: UBL 2.1 XML for invoices, credit and debit notes, support documents, POS and payroll; XAdES-EPES signing with PKCS12 certificates; CUFE/CUDE/CUNE hashing; WS-Security SOAP transmission to the DIAN VPFE; and PDF rendering for both A4 and 80mm thermal. Embedded as plain Go calls rather than a separate API server to deploy.",
+      role: "Sole author",
+      year: "2026",
+      techStack: ["Go", "UBL 2.1", "XAdES-EPES", "SOAP / WS-Security", "PKCS12"],
+      privateRepo: true,
+      status: "completed",
+      category: "startup"
+    },
+    {
+      slug: "liria",
+      title: "Liria — Vertical micro-drama platform",
+      tagline: "AI micro-dramas and webtoons for the Spanish-speaking market.",
+      description:
+        "A streaming platform for vertical micro-dramas (50–100 episodes of 1–2 minutes) and AI-assisted comics, with a co-creating community and radical-transparency monetization: coins that never expire, full price shown up front, server-side verified rewarded ads, and one-click VIP cancellation. Built on a double-entry, idempotent coin ledger with a three-way unlock gate (free / coins / ad).",
+      role: "Founder & Lead Engineer",
+      year: "2026",
+      techStack: ["NestJS", "Prisma", "PostgreSQL", "Redis", "React Native (Expo)", "React"],
+      privateRepo: true,
+      status: "in-progress",
+      category: "startup"
+    },
+    {
+      slug: "lyfin",
+      title: "Lyfin — Personal finance for Colombia",
+      tagline: "Local-first expenses, debts and budgets. Private by design.",
+      description:
+        "A personal finance app for Colombia — expenses, debts, budgets and payment reminders — across an Android (Kotlin/Compose) and a PWA (React/TS) client. Everything works offline and lives encrypted on the device. Money is integer minor units only (COP has no cents), and the two clients are kept in lockstep by shared golden vectors both test suites run in CI, since there is no shared KMP layer.",
+      role: "Founder & Lead Engineer",
+      year: "2026",
+      techStack: ["Kotlin", "Jetpack Compose", "React", "TypeScript", "SQLCipher"],
+      privateRepo: true,
+      status: "in-progress",
+      category: "startup"
+    },
+    {
+      slug: "lydeck",
+      title: "LyDeck — Control deck for coding agents",
+      tagline: "An agent-neutral terminal, harness console and Git client.",
+      description:
+        "A GPU-rendered terminal that doubles as the control panel for the CLI coding agents you already use. Approvable diffs, live token and cost, MCP servers and permissions edited in a real UI that writes your CLI's own native config files, a lane-per-worktree visual Git client, and an embedded local model for offline command help. Agent-neutral by design: no account, no telemetry.",
+      role: "Founder & Lead Engineer",
+      year: "2026",
+      techStack: ["Rust", "Tauri", "React", "TypeScript", "WebGPU"],
+      privateRepo: true,
+      status: "in-progress",
+      category: "startup"
+    },
+
+    // ── Independent products & open source ─────────────────────────────────
+    {
+      slug: "ai-content-bot",
       title: "AI Content Bot",
-      description: "Agent-agnostic AI content factory for social media. Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex, Gemini CLI, Kimi, Cursor...) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Features AI visual QA, a human-in-the-loop approval panel (PWA), smart content planning from history, and one-click publishing to Meta.",
+      tagline: "Agent-agnostic content factory for social media.",
+      description:
+        "Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex, Gemini CLI, Kimi, Cursor…) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Features AI visual QA that regenerates bad frames, a human-in-the-loop approval panel (PWA), content planning from history, and one-click publishing to Meta.",
+      role: "Sole author",
+      year: "2026",
       techStack: ["Node.js", "TypeScript", "AI Agents", "Remotion", "FFmpeg", "Cloudflare D1/R2"],
-      githubUrl: "https://github.com/DrewGGM/ai-content-bot",
-      demoUrl: "https://ai-content-bot-demo.andrewgarcia.dev",
+      links: [
+        { label: "Live demo", url: "https://ai-content-bot-demo.andrewgarcia.dev", kind: "demo" },
+        { label: "Source", url: "https://github.com/DrewGGM/ai-content-bot", kind: "repo" }
+      ],
       imageUrl: "/projects/content-bot-panel.png",
       images: [
         "/projects/content-bot-panel.png",
@@ -136,13 +207,147 @@ export const cvData: CVData = {
         "/projects/content-bot-generate.png",
         "/projects/content-bot-mobile.png"
       ],
-      status: "completed"
+      status: "completed",
+      category: "product",
+      featured: true,
+      inCv: true
     },
     {
-      title: "Coming Soon",
-      description: "More exciting projects on the way. Check back soon!",
-      techStack: [],
-      status: "coming-soon"
+      slug: "project-blueprint",
+      title: "Project Blueprint",
+      tagline: "An agent skill that acts as your software architect.",
+      description:
+        "Turns a raw idea into a validated, code-ready blueprint before a line of code is written, through five gated phases: frame, discover, architect, harden, plan. Each phase has an exit gate, and the ceremony scales to the size of the work (Lite / Standard / Full). Portable across Claude Code, Cursor and the wider agent-skills ecosystem.",
+      role: "Sole author",
+      year: "2026",
+      techStack: ["Agent Skills", "Markdown", "Software Architecture", "C4 / Mermaid"],
+      links: [
+        { label: "Source", url: "https://github.com/DrewGGM/project-blueprint-skill", kind: "repo" }
+      ],
+      status: "completed",
+      category: "product"
+    },
+    {
+      slug: "qr-permanente",
+      title: "QR Permanente",
+      tagline: "Artistic, permanent QR codes. No server, no expiry, no signup.",
+      description:
+        "A fully static QR generator with 10 preloaded templates (URL, restaurant menu, WiFi, vCard, payments, calendar events…), six dot styles, gradients, a logo embedded in the SVG rather than overlaid, and export to SVG, PNG, JPEG or WebP. Because nothing is stored server-side, the codes can never break or expire.",
+      role: "Sole author",
+      year: "2026",
+      techStack: ["Astro", "Tailwind CSS v4", "TypeScript", "Cloudflare Pages"],
+      links: [
+        { label: "Live site", url: "https://qr-permanente.pages.dev", kind: "site" },
+        { label: "Source", url: "https://github.com/DrewGGM/QR-Generator", kind: "repo" }
+      ],
+      status: "completed",
+      category: "product"
+    },
+
+    // ── Academic & earlier work ────────────────────────────────────────────
+    {
+      slug: "vetapp",
+      title: "VetApp — Veterinary clinic management",
+      tagline: "Spring Boot DDD API plus an Angular 19 client.",
+      description:
+        "Full-stack management system for veterinary clinics: owners and pets, appointments and medical consultations, vaccinations, treatments, and reminders. The API follows Domain-Driven Design across domain, application, infrastructure and interface layers, with MapStruct mapping and OpenAPI docs; the client is an Angular 19 SPA with Tailwind.",
+      role: "University project",
+      year: "2025",
+      techStack: ["Java 17", "Spring Boot 3.4", "DDD", "MySQL", "Angular 19", "Tailwind"],
+      links: [
+        { label: "API", url: "https://github.com/DrewGGM/Proyecto-AppsEmpresariales-VetApi", kind: "repo" },
+        { label: "Web app", url: "https://github.com/DrewGGM/Proyecto-AppsEmpresariales-VetApp", kind: "repo" }
+      ],
+      status: "completed",
+      category: "academic",
+      inCv: true
+    },
+    {
+      slug: "airbnb-clone",
+      title: "Airbnb-style booking platform",
+      tagline: "NestJS + Prisma API with a Vue 3 front end.",
+      description:
+        "A property rental platform covering the full booking flow: JWT authentication with role-based access, property listings with images and amenities, availability and reservations. The API is NestJS with Prisma over MySQL and cache-manager; the client is Vue 3 with Pinia stores, Vue Router and Playwright end-to-end tests.",
+      role: "University project",
+      year: "2024",
+      techStack: ["NestJS", "Prisma", "MySQL", "Vue 3", "Pinia", "Playwright"],
+      links: [
+        { label: "Source (API + web)", url: "https://github.com/DrewGGM/AirBNB-PW", kind: "repo" }
+      ],
+      status: "completed",
+      category: "academic"
+    },
+    {
+      slug: "unilocal",
+      title: "UniLocal — Discover local businesses",
+      tagline: "Android app with maps, reviews and a moderation flow.",
+      description:
+        "A Jetpack Compose app for finding and rating nearby shops, restaurants and services. Interactive Mapbox map with category filters, place creation with photos and schedules, reviews, favourites, and a moderator role with an approval queue and statistics. Firebase Auth and Firestore for the backend, Cloudinary for image uploads, full Material 3 light and dark themes.",
+      role: "Solo build, from a team course project",
+      year: "2025",
+      techStack: ["Kotlin", "Jetpack Compose", "MVVM", "Firebase", "Mapbox", "Cloudinary"],
+      links: [
+        { label: "Source", url: "https://github.com/DrewGGM/UniLocal", kind: "repo" },
+        { label: "Course version", url: "https://github.com/DrewGGM/ProyectoFinal-UniLocal-AppsMoviles", kind: "repo" }
+      ],
+      status: "completed",
+      category: "academic"
+    },
+    {
+      slug: "bondbox",
+      title: "BondBox — Collaborative family organizer",
+      tagline: "Shared tasks, inventory and finances for a household.",
+      description:
+        "A web platform for families to organize together: tasks and calendar, shared inventory, group communication and household finances. Built by a team of four; I owned the Bondy AI assistant and the finance module. React 18 with Zustand, React Hook Form and Zod validation, tested with Vitest and shipped in Docker behind nginx.",
+      role: "Team of 4 · AI & Finance modules",
+      year: "2025",
+      techStack: ["React 18", "TypeScript", "Zustand", "Zod", "Vitest", "Docker"],
+      links: [
+        { label: "Front-end source", url: "https://github.com/DrewGGM/bondbox-frontend", kind: "repo" }
+      ],
+      status: "completed",
+      category: "academic"
+    },
+    {
+      slug: "apitravel",
+      title: "ApiTravel — Travel booking API",
+      tagline: "Spring Boot REST API structured with DDD.",
+      description:
+        "A REST API for browsing and booking travel packages, covering customers, trips, day-by-day itineraries and reservations. Domain-Driven Design splits domain, persistence and web layers; business rules such as unique emails and valid date ranges are enforced in the domain and covered by unit tests, with the surface documented via OpenAPI.",
+      role: "University project",
+      year: "2025",
+      techStack: ["Java", "Spring Boot", "DDD", "JPA", "OpenAPI"],
+      privateRepo: true,
+      status: "completed",
+      category: "academic"
+    },
+
+    // ── Game development ───────────────────────────────────────────────────
+    {
+      slug: "encubierto",
+      title: "Encubierto",
+      tagline: "2D isometric narrative stealth game.",
+      description:
+        "A story-driven isometric game built in Unity across a dozen hand-built scenes. Custom dialogue systems per character and level, an inventory with usable items, trigger-based encounters and suspicion zones, a persistent settings system for audio and text, and a full menu-to-credits flow.",
+      role: "Team project",
+      year: "2024",
+      techStack: ["Unity", "C#", "2D Isometric", "Audio Mixer"],
+      privateRepo: true,
+      status: "completed",
+      category: "game"
+    },
+    {
+      slug: "garden-curse",
+      title: "The Garden's Curse",
+      tagline: "Unity game with a level-based progression.",
+      description:
+        "A Unity game built around a sequence of levels with their own environments, materials and soundtrack, from an opening scene through to credits. A second run at game development after Encubierto, focused on tightening the environment art and audio design.",
+      role: "Team project",
+      year: "2025",
+      techStack: ["Unity", "C#", "Game Design"],
+      privateRepo: true,
+      status: "completed",
+      category: "game"
     }
   ]
 };

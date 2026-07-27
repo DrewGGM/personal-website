@@ -30,7 +30,7 @@ function App() {
         <Experience experiences={cv.experience} />
         <Education education={cv.education} />
         <Skills skills={cv.skills} />
-        <Projects projects={cv.projects} />
+        <Projects projects={cv.projects} ventures={cv.ventures} />
         <Certifications certifications={cv.certifications} />
         <Contact data={cv} />
       </div>

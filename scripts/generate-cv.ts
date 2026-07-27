@@ -102,9 +102,13 @@ function buildHtml(data: CVData, labels: CVLabels): string {
   const linkedin = data.socialNetworks.find((s) => s.network === 'LinkedIn');
   const github = data.socialNetworks.find((s) => s.network === 'GitHub');
 
-  // Proyectos destacados en el CV: los completados con link (máx 3).
-  // En el CV va solo la PRIMERA frase de la descripción (regla de 1 página); el detalle vive en la web.
-  const cvProjects = data.projects.filter((p) => p.status === 'completed' && (p.demoUrl || p.githubUrl)).slice(0, 3);
+  // Proyectos del CV: los marcados con `inCv` en cvData (máx 3 por la regla de 1 página).
+  // En el CV va solo la PRIMERA frase de la descripción; el detalle vive en la web.
+  const cvProjects = data.projects.filter((p) => p.inCv).slice(0, 3);
+
+  /** Primer link de cada tipo, para la línea de enlaces del proyecto. */
+  const pickLink = (p: (typeof cvProjects)[number], kinds: string[]) =>
+    p.links?.find((l) => kinds.includes(l.kind))?.url;
 
   return `<!doctype html>
 <html lang="${labels.htmlLang}">
@@ -185,18 +189,22 @@ function buildHtml(data: CVData, labels: CVLabels): string {
 
   <section>
     <h2>${esc(labels.sections.projects)}</h2>
-    ${cvProjects.map((p) => `
+    ${cvProjects.map((p) => {
+      const demoUrl = pickLink(p, ['demo', 'site']);
+      const repoUrl = pickLink(p, ['repo']);
+      return `
     <div class="item">
       <div class="item-head">
         <div><span class="role">${esc(p.title)}</span></div>
         <div class="proj-links">
-          ${p.demoUrl ? `<a href="${p.demoUrl}">${p.demoUrl.replace('https://', '')}</a>` : ''}
-          ${p.demoUrl && p.githubUrl ? ' · ' : ''}
-          ${p.githubUrl ? `<a href="${p.githubUrl}">${p.githubUrl.replace('https://github.com/', 'gh:')}</a>` : ''}
+          ${demoUrl ? `<a href="${demoUrl}">${demoUrl.replace('https://', '')}</a>` : ''}
+          ${demoUrl && repoUrl ? ' · ' : ''}
+          ${repoUrl ? `<a href="${repoUrl}">${repoUrl.replace('https://github.com/', 'gh:')}</a>` : ''}
         </div>
       </div>
       <p>${esc(shortDesc(p.description))} <b>${esc(labels.stack)}:</b> ${p.techStack.map(esc).join(', ')}.</p>
-    </div>`).join('')}
+    </div>`;
+    }).join('')}
   </section>
 
   <section>
@@ -225,14 +233,20 @@ function buildHtml(data: CVData, labels: CVLabels): string {
 }
 
 // Render un PDF con Chrome/Edge headless.
+// CHROME_PATH permite forzar el binario (contenedores, CI, Chromium de Playwright).
 const browsers = [
+  ...(process.env.CHROME_PATH ? [process.env.CHROME_PATH] : []),
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
   'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
   'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
   '/usr/bin/google-chrome', '/usr/bin/chromium-browser', '/usr/bin/chromium',
 ];
 const browser = browsers.find((b) => existsSync(b));
-if (!browser) throw new Error('No se encontró Chrome/Edge para renderizar el PDF');
+if (!browser) {
+  throw new Error(
+    'No se encontró Chrome/Edge para renderizar el PDF. Instala Chrome o define CHROME_PATH.',
+  );
+}
 
 function renderPdf(data: CVData, labels: CVLabels, outFile: string) {
   const tmp = mkdtempSync(join(tmpdir(), 'cv-'));
@@ -242,6 +256,9 @@ function renderPdf(data: CVData, labels: CVLabels, outFile: string) {
   const pdfTmp = join(tmp, 'cv.pdf');
   execFileSync(browser!, [
     '--headless', '--disable-gpu', '--no-pdf-header-footer',
+    // Chrome se niega a arrancar como root con el sandbox activo (contenedores/CI).
+    // Solo lo desactivamos en ese caso; en un equipo normal el sandbox sigue puesto.
+    ...(process.getuid?.() === 0 ? ['--no-sandbox'] : []),
     `--print-to-pdf=${pdfTmp}`,
     pathToFileURL(htmlPath).href,
   ], { stdio: 'pipe' });

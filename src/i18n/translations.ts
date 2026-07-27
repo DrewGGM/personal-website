@@ -57,6 +57,17 @@ export interface Translation {
     goToImage: (i: number) => string;
     screenshotsOf: (name: string) => string;
     screenshotOf: (i: number, total: number) => string;
+    /** Filter chips over the compact grid. */
+    filters: Record<'all' | 'startup' | 'product' | 'academic' | 'game', string>;
+    filterLabel: string;
+    privateSource: string;
+    privateSourceTitle: string;
+    venture: {
+      label: string;
+      productLine: (n: number) => string;
+      visitSite: string;
+    };
+    otherWork: string;
   };
   certifications: { viewCertificate: string };
   contact: {
@@ -153,6 +164,22 @@ const en: Translation = {
     goToImage: (i) => `Go to image ${i}`,
     screenshotsOf: (name) => `${name} screenshots`,
     screenshotOf: (i, total) => `screenshot ${i} of ${total}`,
+    filters: {
+      all: 'All',
+      startup: 'Startup',
+      product: 'Products',
+      academic: 'Academic',
+      game: 'Games',
+    },
+    filterLabel: 'Filter projects by category',
+    privateSource: 'Private source',
+    privateSourceTitle: 'Proprietary — the repository is not public',
+    venture: {
+      label: 'My startup',
+      productLine: (n) => `${n} products`,
+      visitSite: 'Visit site',
+    },
+    otherWork: 'Other work',
   },
   certifications: { viewCertificate: 'View Certificate' },
   contact: {
@@ -253,6 +280,22 @@ const es: Translation = {
     goToImage: (i) => `Ir a la imagen ${i}`,
     screenshotsOf: (name) => `Capturas de ${name}`,
     screenshotOf: (i, total) => `captura ${i} de ${total}`,
+    filters: {
+      all: 'Todos',
+      startup: 'Startup',
+      product: 'Productos',
+      academic: 'Académicos',
+      game: 'Juegos',
+    },
+    filterLabel: 'Filtrar proyectos por categoría',
+    privateSource: 'Código privado',
+    privateSourceTitle: 'Propietario — el repositorio no es público',
+    venture: {
+      label: 'Mi startup',
+      productLine: (n) => `${n} productos`,
+      visitSite: 'Ver sitio',
+    },
+    otherWork: 'Otros proyectos',
   },
   certifications: { viewCertificate: 'Ver certificado' },
   contact: {

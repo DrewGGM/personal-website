@@ -39,6 +39,35 @@ The layout follows current resume conventions (researched 2026):
 To adapt it for your own fork: edit `src/data/cvData.ts` (data) and the constants at the top of
 `scripts/generate-cv.ts` (accent color, output filename).
 
+The three projects that make the PDF are the ones flagged `inCv: true` in `cvData.ts` (the
+one-page rule caps it at 3) — not simply the first three in the list.
+
+If Chrome isn't in a standard location, point the generator at a binary with `CHROME_PATH`:
+
+```bash
+CHROME_PATH=/path/to/chrome npm run cv
+```
+
+## Projects section
+
+Projects live in `cvData.ts` (EN) and `cvData.es.ts` (ES), which must stay structurally
+identical — same `slug`s, same order. The section renders in three tiers:
+
+- **Ventures** (`ventures[]`) — a startup rendered as one block with its product line nested
+  underneath, listed by slug in `products[]`. This is what keeps LyrooPOS reading as *a product
+  of* Lyroo rather than a competing sibling card. Products listed here never also appear in the
+  grid below.
+- **Featured** (`featured: true`) — large hero cards with a screenshot gallery.
+- **Grid** — every other project, as a standardized compact card, filterable by `category`
+  (`startup` · `product` · `academic` · `game`).
+
+Two rules when adding a project:
+
+- **Only add a `repo` link if the repository is actually public.** A private repo renders as a
+  404 for visitors. Set `privateRepo: true` instead and the card shows a "private source" marker.
+- Give every project a `slug`, a `tagline` (the compact cards show it instead of the full
+  `description`), a `role` and a `year`, so the grid stays visually consistent.
+
 ## Tech Stack
 
 - **React 19** - UI library
