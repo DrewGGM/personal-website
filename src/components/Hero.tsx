@@ -1,18 +1,16 @@
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Download, ChevronDown } from 'lucide-react';
+import { Github, Linkedin, ChevronDown } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import MagneticButton from './MagneticButton';
 import CountUp from './CountUp';
+import CvDownload from './CvDownload';
 import { useLanguage } from '../i18n/LanguageContext';
 import type { CVData } from '../types';
 
 interface HeroProps {
   data: CVData;
 }
-
-const CV_EN = '/Andrew_Garcia_Mosquera_CV.pdf';
-const CV_ES = '/Andrew_Garcia_Mosquera_CV_ES.pdf';
 
 const container = {
   hidden: { opacity: 0 },
@@ -42,8 +40,6 @@ export default function Hero({ data }: HeroProps) {
 
   // TypeAnimation only reads its `sequence` once, so key it on `lang` to remount on switch.
   const typewriterSequence = t.hero.typewriter.flatMap((phrase) => [phrase, 2000]);
-
-  const primaryCv = lang === 'es' ? CV_ES : CV_EN;
 
   return (
     <section id="home" className="hero">
@@ -105,12 +101,7 @@ export default function Hero({ data }: HeroProps) {
                 </a>
               </MagneticButton>
             )}
-            <MagneticButton strength={0.25}>
-              <a href={primaryCv} download className="btn-primary">
-                <Download size={18} />
-                {t.hero.downloadCv}
-              </a>
-            </MagneticButton>
+            <CvDownload />
           </motion.div>
 
           <motion.div className="hero-stats" variants={item}>

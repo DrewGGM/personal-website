@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cv": "tsx scripts/generate-cv.ts"
+    "cv": "tsx scripts/generate-cv.ts",
+    "cv:lint": "tsx scripts/cv-lint.ts",
+    "cv:match": "tsx scripts/cv-match.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

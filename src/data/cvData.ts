@@ -49,7 +49,7 @@ export const cvData: CVData = {
   ],
   experience: [
     {
-      company: "FINANCIERA COFINCAFE - Cooperativa de Ahorro y Credito",
+      company: "Financiera Cofincafé (Cooperativa de Ahorro y Crédito)",
       position: "Junior Software Developer",
       startDate: "2026-08",
       endDate: "present",
@@ -73,7 +73,7 @@ export const cvData: CVData = {
       ]
     },
     {
-      company: "FINANCIERA COFINCAFE - Cooperativa de Ahorro y Credito",
+      company: "Financiera Cofincafé (Cooperativa de Ahorro y Crédito)",
       position: "Development Intern",
       startDate: "2026-01",
       endDate: "2026-07",
