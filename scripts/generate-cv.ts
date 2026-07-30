@@ -7,11 +7,16 @@
  *
  *   npm run cv
  *
- * Conventions applied (researched, 2026):
+ * Conventions applied (researched, 2026 — see docs/CV-ATS.md):
  *  - ONE page for <10 years of experience; every line must earn its place.
  *  - STRICT single column (multi-column/tables/headers break older ATS parsers).
  *  - Standard section headings (Summary/Experience/Projects/Skills/Education).
  *  - XYZ-style bullets: what you built + measurable outcome, real text only.
+ *  - ATS-safe typography: system font from the parser-tested list, `|` as the
+ *    only field separator and a plain hyphen in date ranges.
+ *
+ * `npm run cv:lint` audits the produced PDF by reading back its text layer —
+ * literally what a parser sees. Change the layout here, run the lint there.
  */
 import { writeFileSync, existsSync, mkdtempSync, copyFileSync, rmSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -21,7 +26,11 @@ import { execFileSync } from 'node:child_process';
 import type { CVData } from '../src/types';
 import { cvData } from '../src/data/cvData';
 import { cvDataES } from '../src/data/cvData.es';
-import { dateKey, groupExperience } from '../src/i18n/translations';
+import { groupExperience } from '../src/i18n/translations';
+import { type CVLabels, EN_LABELS, ES_LABELS, ats, formatters } from './lib/cv-labels';
+import { extractPdfText } from './lib/pdf-text';
+import { toJsonResume } from './lib/json-resume';
+import { buildDocx } from './lib/docx';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -29,60 +38,7 @@ const ACCENT = '#4f46e5';
 const INK = '#111827';
 const MUTED = '#4b5563';
 
-// Etiquetas i18n: todo lo que no vive en cvData (títulos de sección, meses, "Presente").
-interface CVLabels {
-  htmlLang: string;
-  present: string;
-  /** Rol firmado que aún no empieza, p. ej. "Desde ago 2026". */
-  starting: (date: string) => string;
-  months: string[];
-  sections: {
-    summary: string;
-    experience: string;
-    projects: string;
-    skills: string;
-    education: string;
-    certifications: string;
-  };
-  spokenLanguages: string;
-  stack: string;
-}
-
-const EN_LABELS: CVLabels = {
-  htmlLang: 'en',
-  present: 'Present',
-  starting: (date) => `Starting ${date}`,
-  months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  sections: {
-    summary: 'Summary',
-    experience: 'Experience',
-    projects: 'Projects',
-    skills: 'Skills',
-    education: 'Education',
-    certifications: 'Certifications',
-  },
-  spokenLanguages: 'Spoken Languages',
-  stack: 'Stack',
-};
-
-const ES_LABELS: CVLabels = {
-  htmlLang: 'es',
-  present: 'Actual',
-  starting: (date) => `Desde ${date}`,
-  months: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
-  sections: {
-    summary: 'Perfil',
-    experience: 'Experiencia',
-    projects: 'Proyectos',
-    skills: 'Habilidades',
-    education: 'Educación',
-    certifications: 'Certificaciones',
-  },
-  spokenLanguages: 'Idiomas',
-  stack: 'Stack',
-};
-
-const esc = (s: string) => (s ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
+const esc = (s: string) => ats(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
 
 // Toma frases completas hasta ~140 caracteres (evita descripciones demasiado escuetas o largas).
 const shortDesc = (s: string) => {
@@ -109,19 +65,8 @@ interface Fit {
 }
 
 function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 1 }): string {
-  const fmtDate = (d: string): string => {
-    if (!d || d === 'present') return labels.present;
-    const [y, m] = d.split('-');
-    return m ? `${labels.months[Number(m) - 1]} ${y}` : y;
-  };
-
-  // Un rol cuyo mes de inicio aún no llega no puede presentarse como actual.
-  // Al llegar ese mes, el mismo dato pasa solo a "inicio – Actual".
-  const NOW_KEY = new Date().getFullYear() * 12 + (new Date().getMonth() + 1);
-  const fmtRange = (start: string, end: string): string =>
-    dateKey(start) > NOW_KEY
-      ? labels.starting(fmtDate(start))
-      : `${fmtDate(start)} – ${fmtDate(end)}`;
+  // Compartidos con el .docx: las dos salidas tienen que fechar igual.
+  const { fmtRange } = formatters(labels);
 
   // Mismo orden que la web: por fecha, con los roles de una misma empresa juntos.
   const experience = groupExperience(data.experience).flatMap((g) => g.roles);
@@ -161,7 +106,10 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body {
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    /* Arial/Helvetica: de la lista corta que toda guía de ATS da por segura.
+       'Segoe UI' se extraía bien, pero no está en esa lista y no aporta nada
+       que compense el riesgo. */
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     color: ${INK}; font-size: ${pt(9.3)}; line-height: ${lineHeight};
   }
   a { color: ${ACCENT}; text-decoration: none; }
@@ -169,7 +117,9 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
   h1 { font-size: ${pt(19)}; font-weight: 800; letter-spacing: -0.3px; }
   .headline { font-size: ${pt(11)}; color: ${ACCENT}; font-weight: 600; margin-top: 1px; }
   .contact { margin-top: ${px(5)}; font-size: ${pt(8.8)}; color: ${MUTED}; }
-  .contact span + span::before { content: '  ·  '; color: #c7cad1; }
+  /* El contenido generado por CSS SÍ acaba en la capa de texto del PDF, así que
+     este separador lo lee el parser igual que el resto. Por eso es '|'. */
+  .contact span + span::before { content: '  |  '; color: #c7cad1; }
   h2 {
     font-size: ${pt(10)}; font-weight: 800; text-transform: uppercase; letter-spacing: 1.3px;
     color: ${ACCENT}; margin: ${px(7)} 0 ${px(3)}; padding-bottom: 2px;
@@ -181,10 +131,17 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
   /* Un puesto/proyecto no se parte entre dos hojas. */
   .item { margin-bottom: ${px(5)}; break-inside: avoid; page-break-inside: avoid; }
   .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  /* El puesto va SOLO en su línea y la empresa en la siguiente, con las fechas
+     al final. Así el parser recibe un cargo limpio y una línea
+     "empresa | ciudad | rango" que sabe trocear; juntándolo todo en una sola
+     línea leía "Empresa Ciudad Ago 2026" como nombre de la empresa. */
   .role { font-weight: 700; font-size: ${pt(10.4)}; }
-  .org { font-weight: 600; color: ${ACCENT}; }
+  .org { font-weight: 600; color: ${ACCENT}; font-size: ${pt(9)}; }
   .dates { font-size: ${pt(8.8)}; color: ${MUTED}; white-space: nowrap; }
-  .loc { font-size: ${pt(8.8)}; color: ${MUTED}; margin-bottom: 2px; }
+  /* Las fechas van alineadas a la derecha, así que en la capa de texto quedaban
+     pegadas a la ciudad ("… Colombia Aug 2026") y un parser podía tragarse el
+     mes dentro de la localidad. Este separador rompe la ambigüedad. */
+  .item-head .dates::before { content: '|  '; color: #c7cad1; }
   .item p { color: ${MUTED}; margin-bottom: 2px; }
   /* La sangría va en padding, no en margin: los marcadores "outside" se dibujan
      en esa zona, y con padding 0 quedaban fuera de la caja y no se veían. */
@@ -225,11 +182,11 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
     <h2>${esc(labels.sections.experience)}</h2>
     ${experience.map((e) => `
     <div class="item">
+      <div class="role">${esc(e.position)}</div>
       <div class="item-head">
-        <div><span class="role">${esc(e.position)}</span> — <span class="org">${esc(e.company)}</span></div>
+        <div class="org">${esc(e.company)} | ${esc(e.location)}</div>
         <div class="dates">${fmtRange(e.startDate, e.endDate)}</div>
       </div>
-      <div class="loc">${esc(e.location)}</div>
       <p>${esc(e.summary)}</p>
       <ul>${e.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
     </div>`).join('')}
@@ -246,7 +203,7 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
         <div><span class="role">${esc(p.title)}</span></div>
         <div class="proj-links">
           ${demoUrl ? `<a href="${demoUrl}">${demoUrl.replace('https://', '')}</a>` : ''}
-          ${demoUrl && repoUrl ? ' · ' : ''}
+          ${demoUrl && repoUrl ? ' | ' : ''}
           ${repoUrl ? `<a href="${repoUrl}">${repoUrl.replace('https://github.com/', 'gh:')}</a>` : ''}
         </div>
       </div>
@@ -259,7 +216,7 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
     <h2>${esc(labels.sections.skills)}</h2>
     <div class="skills-grid">
       ${data.skills.map((s) => `<div class="skill-row"><b>${esc(s.label)}:</b> <span>${esc(s.details)}</span></div>`).join('')}
-      <div class="skill-row"><b>${esc(labels.spokenLanguages)}:</b> <span>${data.languages.map((l) => `${esc(l.label)} (${esc(l.details)})`).join(' · ')}</span></div>
+      <div class="skill-row"><b>${esc(labels.spokenLanguages)}:</b> <span>${data.languages.map((l) => `${esc(l.label)} (${esc(l.details)})`).join(' | ')}</span></div>
     </div>
   </section>
 
@@ -269,12 +226,15 @@ function buildHtml(data: CVData, labels: CVLabels, fit: Fit = { font: 1, space: 
       // el curso corto de Next U ya aparece en Certifications — en el CV de 1 página no se duplica
       .filter((ed) => ed.institution !== 'Next U')
       .map((ed) => `
-    <div class="edu-line"><b>${esc(ed.degree)} — ${esc(ed.area)}</b>, ${esc(ed.institution)} <small>· ${fmtDate(ed.startDate)} – ${fmtDate(ed.endDate)}</small></div>`).join('')}
+    <div class="edu-line item-head">
+      <div><b>${esc(ed.degree)}, ${esc(ed.area)}</b> | ${esc(ed.institution)}</div>
+      <div class="dates">${fmtRange(ed.startDate, ed.endDate)}</div>
+    </div>`).join('')}
   </section>
 
   <section>
     <h2>${esc(labels.sections.certifications)}</h2>
-    <p class="cert-line">${data.certifications.map((c) => `${esc(c.title)} (${esc(c.issuer)}, ${esc(c.date.split(' ').pop() ?? c.date)})`).join(' · ')}</p>
+    <p class="cert-line">${data.certifications.map((c) => `${esc(c.title)} (${esc(c.issuer)}, ${esc(c.date.split(' ').pop() ?? c.date)})`).join(' | ')}</p>
   </section>
 </body>
 </html>`;
@@ -338,7 +298,7 @@ const FIT_STEPS: Fit[] = [
  * deja que fluya a varias hojas — que ya salen bien formadas gracias a @page,
  * break-inside y break-after.
  */
-function renderPdf(data: CVData, labels: CVLabels, outFile: string) {
+function renderPdf(data: CVData, labels: CVLabels, outFile: string, jsonFile: string) {
   const tmp = mkdtempSync(join(tmpdir(), 'cv-'));
   const htmlPath = join(tmp, 'cv.html');
   const pdfTmp = join(tmp, 'cv.pdf');
@@ -364,14 +324,30 @@ function renderPdf(data: CVData, labels: CVLabels, outFile: string) {
   copyFileSync(pdfTmp, outPath);
   rmSync(tmp, { recursive: true, force: true });
 
+  // El .txt NO se construye a partir del HTML, sino leyendo la capa de texto del
+  // PDF recién escrito. Así no puede desviarse de lo que ve un parser: es a la
+  // vez la versión para pegar en cajas de "pega aquí tu CV" y la prueba de qué
+  // se extrae realmente.
+  const txtPath = outPath.replace(/\.pdf$/, '.txt');
+  writeFileSync(txtPath, `${extractPdfText(readFileSync(outPath)).trim()}\n`, 'utf8');
+
+  // Word, para los formularios que piden .docx (o cuya vista previa del parser
+  // sale mal con el PDF): Workday y Taleo, sobre todo.
+  writeFileSync(outPath.replace(/\.pdf$/, '.docx'), buildDocx(data, labels));
+
+  // Versión estructurada, en el esquema abierto JSON Resume.
+  writeFileSync(join(ROOT, 'public', jsonFile), `${JSON.stringify(toJsonResume(data), null, 2)}\n`, 'utf8');
+
   const { font, space } = chosen.fit;
   const notes = [
     space < 1 ? `espaciado ${Math.round(space * 100)}%` : '',
     font < 1 ? `letra ${Math.round(font * 100)}%` : '',
   ].filter(Boolean);
   const suffix = notes.length ? ` · ${notes.join(', ')}` : '';
-  console.log(`✅ CV regenerado → ${outPath} (${chosen.pages} pág.${suffix})`);
+  console.log(`✅ ${outFile} (${chosen.pages} pág.${suffix})`);
+  console.log(`   + ${outFile.replace(/\.pdf$/, '.txt')} · ${outFile.replace(/\.pdf$/, '.docx')} · ${jsonFile}`);
 }
 
-renderPdf(cvData, EN_LABELS, 'Andrew_Garcia_Mosquera_CV.pdf');
-renderPdf(cvDataES, ES_LABELS, 'Andrew_Garcia_Mosquera_CV_ES.pdf');
+renderPdf(cvData, EN_LABELS, 'Andrew_Garcia_Mosquera_CV.pdf', 'resume.json');
+renderPdf(cvDataES, ES_LABELS, 'Andrew_Garcia_Mosquera_CV_ES.pdf', 'resume.es.json');
+console.log('\nAudita el resultado con: npm run cv:lint');

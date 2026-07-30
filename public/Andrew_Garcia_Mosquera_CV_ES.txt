@@ -1,0 +1,64 @@
+Andrew Garcia Mosquera
+Ingeniero de Software | Fundador de Lyroo
+Armenia, Quindío, Colombia | contact@andrewgarcia.dev | +57 320 657 4470 | andrewgarcia.dev | linkedin.com/in/andrewgarciam |
+github.com/DrewGGM
+PERFIL
+Ingeniero de software y fundador de Lyroo S.A.S, una startup colombiana que desarrolla LyrooPOS - un punto de venta offline-first con un
+motor de facturación electrónica DIAN embebido. Especializado en desarrollo backend y arquitectura de aplicaciones (Java/Spring Boot,
+Go, arquitectura hexagonal). Actualmente desarrollo sistemas de core bancario en COFINCAFE y software full-stack para clientes en
+JAMS Technologies, mientras lidero producto e ingeniería en Lyroo. Sólida base en QA, código limpio y metodologías ágiles.
+EXPERIENCIA
+Desarrollador de Software Junior
+Financiera Cofincafé (Cooperativa de Ahorro y Crédito) | Armenia, Quindío, Colombia | ago 2026 - Actual (previsto)
+Vinculado como desarrollador tras la práctica, continuando en la plataforma de core bancario de la cooperativa.
+Desarrollo y mantenimiento de funcionalidades sobre el core bancario Apache Fineract
+Soporte a productos financieros y configuración de módulos bancarios en producción
+Practicante de Desarrollo
+Financiera Cofincafé (Cooperativa de Ahorro y Crédito) | Armenia, Quindío, Colombia | ene 2026 - jul 2026
+Apoyo en el desarrollo y soporte del sistema de core bancario usando Apache Fineract y Mifos.
+Apoyo en la implementación de productos financieros y la configuración de módulos bancarios
+Resolución de incidencias y contribución a mejoras del sistema
+Trabajo con la plataforma bancaria open-source Apache Fineract y Mifos
+Desarrollador Full Stack
+JAMS Technologies | Colombia | Remoto | abr 2026 - Actual
+Desarrollo de software web y móvil a la medida para clientes en un estudio de desarrollo colombiano, desde MVPs hasta plataformas
+empresariales escalables.
+Desarrollo de funcionalidades full-stack entre front-end, API y base de datos
+Entrega de proyectos de cliente a producción según el alcance y los plazos acordados
+Fundador e Ingeniero de Software Líder
+Lyroo S.A.S | Armenia, Quindío, Colombia | Remote-first | may 2025 - Actual
+Fundé Lyroo, una startup de software para pymes colombianas: LyrooPOS - un punto de venta de escritorio con un motor de facturación
+electrónica DIAN embebido (offline-first, facturación ilimitada sin costos por documento) - y Lyroo Build, un estudio boutique de software a
+la medida.
+Desarrollé LyrooPOS de extremo a extremo: backend en Go (Wails) con más de 31 servicios + frontend en React 18 sobre PostgreSQL -
+v1.2 en producción, primeros clientes activos desde julio de 2026
+Diseñé un core de facturación electrónica DIAN embebido (UBL 2.1) - facturación electrónica ilimitada sin APIs de terceros ni costos por
+folio
+Diseñé una arquitectura offline-first: datos locales con respaldos en la nube cifrados con AES-256, apps de cocina/mesero en tiempo real
+vía WebSocket y datáfonos Bold
+Lidero producto, ingeniería, ventas y onboarding de clientes, incluida la gestión de certificados digitales DIAN para los clientes
+PROYECTOS
+LyrooPOS - Punto de venta para restaurantes pos-system.v1.andrewgarcia.dev | gh:DrewGGM/demo-pos-system
+El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en su versión 1.2. Stack: Go,
+Wails, React, TypeScript, PostgreSQL, WebSocket.
+AI Content Bot ai-content-bot-demo.andrewgarcia.dev | gh:DrewGGM/ai-content-bot
+Genera reels, carruseles, publicaciones y videos con motion renderizados por código para cualquier marca usando CUALQUIER agente
+de código (Claude Code, Codex, Gemini CLI, Kimi, Cursor...) o API de LLM (compatible con OpenAI, OpenRouter, Ollama). Stack:
+Node.js, TypeScript, Agentes IA, Remotion, FFmpeg, Cloudflare D1/R2.
+VetApp - Gestión de clínicas veterinarias gh:DrewGGM/Proyecto-AppsEmpresariales-VetApi
+Sistema full-stack para clínicas veterinarias: propietarios y mascotas, citas y consultas médicas, vacunaciones, tratamientos y
+recordatorios. Stack: Java 17, Spring Boot 3.4, DDD, MySQL, Angular 19, Tailwind.
+HABILIDADES
+Lenguajes: Java, Go, TypeScript, Python, SQL
+Frameworks y Librerías: Spring Boot, React, Node.js, Next.js, Angular, Wails, Selenium
+DevOps y Herramientas: Git, Docker, Cloudflare (Pages/D1/R2), Scrum
+Ingeniería de Software: POO, Patrones de Diseño, Estructuras de Datos, Código Limpio, Arquitectura Hexagonal, Microservicios
+Áreas de Especialización: Desarrollo Backend y Frontend, Arquitectura de Software, QA, Usabilidad
+Idiomas: Español (Nativo) | Inglés (Profesional)
+EDUCACIÓN
+Pregrado, Ingeniería de Software | Institución Universitaria EAM | feb 2023 - Actual
+Bootcamp, Ingeniero QA | TripleTen LatAm | dic 2024 - jun 2025
+CERTIFICACIONES
+Spring Boot: Backend Enterprise Professional Certificate (Dev Senior Code, 2025) | QA Engineer Bootcamp (TripleTen LatAm, 2025) |
+Scrum Fundamentals Certified (SFC) (VMEdu inc, 2024) | Desarrollo Web y UX/UI (Next U, 2022) | DevOps, APIs and Microservices
+Architecture Fundamentals (Udemy, 2025) | Angular (Edutin Academy, 2025) | Spring Framework (Udemy, 2025)

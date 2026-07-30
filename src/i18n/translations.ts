@@ -23,6 +23,22 @@ export interface Translation {
     typewriter: string[];
     description: (headline: string, location: string) => string;
     downloadCv: string;
+    /** Menú con el resto de formatos del CV: Word, texto plano y JSON Resume. */
+    cvFormats: {
+      toggle: string;
+      title: string;
+      pdf: string;
+      pdfHint: string;
+      docx: string;
+      docxHint: string;
+      text: string;
+      textHint: string;
+      json: string;
+      jsonHint: string;
+      copy: string;
+      copied: string;
+      copyFailed: string;
+    };
     codeRole: string;
     codeComment: string;
     scroll: string;
@@ -106,6 +122,21 @@ const en: Translation = {
     description: (headline, location) =>
       `${headline} — building software for real businesses from ${location}.`,
     downloadCv: 'Download CV',
+    cvFormats: {
+      toggle: 'Other CV formats',
+      title: 'Other formats',
+      pdf: 'PDF',
+      pdfHint: 'Default. Reads well for people and parsers.',
+      docx: 'Word (.docx)',
+      docxHint: 'For forms that ask for Word — Workday, Taleo.',
+      text: 'Plain text',
+      textHint: 'For "paste your resume here" boxes.',
+      json: 'JSON Resume',
+      jsonHint: 'Open schema, for autofill extensions and agents.',
+      copy: 'Copy',
+      copied: 'Copied',
+      copyFailed: 'Could not copy — opening the file',
+    },
     codeRole: 'Software Engineer',
     codeComment: '// Open to new challenges!',
     scroll: 'Scroll',
@@ -223,6 +254,21 @@ const es: Translation = {
     description: (headline, location) =>
       `${headline} — construyendo software para negocios reales desde ${location}.`,
     downloadCv: 'Descargar CV',
+    cvFormats: {
+      toggle: 'Otros formatos del CV',
+      title: 'Otros formatos',
+      pdf: 'PDF',
+      pdfHint: 'El de siempre. Se lee bien a ojo y en un parser.',
+      docx: 'Word (.docx)',
+      docxHint: 'Para formularios que piden Word — Workday, Taleo.',
+      text: 'Texto plano',
+      textHint: 'Para las cajas de "pega aquí tu CV".',
+      json: 'JSON Resume',
+      jsonHint: 'Esquema abierto, para extensiones de autorrelleno y agentes.',
+      copy: 'Copiar',
+      copied: 'Copiado',
+      copyFailed: 'No se pudo copiar — abriendo el fichero',
+    },
     codeRole: 'Ingeniero de Software',
     codeComment: '// ¡Abierto a nuevos retos!',
     scroll: 'Desliza',

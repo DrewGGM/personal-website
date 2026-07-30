@@ -1,0 +1,422 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Andrew Garcia Mosquera",
+    "label": "Software Engineer · Founder of Lyroo",
+    "email": "contact@andrewgarcia.dev",
+    "phone": "+57 320 657 4470",
+    "url": "https://andrewgarcia.dev",
+    "summary": "Software engineer and founder of Lyroo S.A.S, a Colombian startup building LyrooPOS — an offline-first point of sale with an embedded DIAN electronic invoicing engine. Specialized in backend development and application architecture (Java/Spring Boot, Go, hexagonal architecture). Currently building core banking systems at COFINCAFE and full-stack client software at JAMS Technologies, while leading product and engineering at Lyroo. Strong foundation in QA, clean code and agile methodologies.",
+    "location": {
+      "city": "Armenia",
+      "region": "Quindio",
+      "countryCode": "CO"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "andrewgarciam",
+        "url": "https://linkedin.com/in/andrewgarciam"
+      },
+      {
+        "network": "GitHub",
+        "username": "DrewGGM",
+        "url": "https://github.com/DrewGGM"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Financiera Cofincafé (Cooperativa de Ahorro y Crédito)",
+      "position": "Junior Software Developer",
+      "location": "Armenia, Quindio, Colombia",
+      "startDate": "2026-08",
+      "summary": "Hired into a permanent engineering role after the internship, continuing on the cooperative's core banking platform.",
+      "highlights": [
+        "Developing and maintaining features on the Apache Fineract core banking system",
+        "Supporting financial products and banking module configuration in production"
+      ]
+    },
+    {
+      "name": "JAMS Technologies",
+      "position": "Full Stack Developer",
+      "location": "Colombia · Remote",
+      "startDate": "2026-04",
+      "summary": "Building custom web and mobile software for clients at a Colombian development studio, from MVPs through to scalable enterprise platforms.",
+      "highlights": [
+        "Developing full-stack features across the front end, API and database",
+        "Delivering client projects to production against agreed scope and deadlines"
+      ]
+    },
+    {
+      "name": "Financiera Cofincafé (Cooperativa de Ahorro y Crédito)",
+      "position": "Development Intern",
+      "location": "Armenia, Quindio, Colombia",
+      "startDate": "2026-01",
+      "endDate": "2026-07",
+      "summary": "Assisted in the development and support of the core banking system using Apache Fineract and Mifos.",
+      "highlights": [
+        "Helped implement financial products and configure banking modules",
+        "Resolved issues and contributed to system improvements",
+        "Worked with the Apache Fineract and Mifos open-source banking platform"
+      ]
+    },
+    {
+      "name": "Lyroo S.A.S",
+      "position": "Founder & Lead Software Engineer",
+      "location": "Armenia, Quindio, Colombia · Remote-first",
+      "startDate": "2025-05",
+      "summary": "Founded Lyroo, a software startup for Colombian SMBs: LyrooPOS — a desktop point of sale with an embedded DIAN electronic invoicing engine (offline-first, unlimited invoicing with no per-document fees) — and Lyroo Build, a boutique custom software studio.",
+      "highlights": [
+        "Built LyrooPOS end-to-end: Go (Wails) backend with 31+ services + React 18 frontend over PostgreSQL — v1.2 in production, first active customers since July 2026",
+        "Engineered an embedded DIAN e-invoicing core (UBL 2.1) — unlimited electronic invoicing without third-party APIs or per-folio costs",
+        "Designed offline-first architecture: local data with AES-256 encrypted cloud backups, real-time kitchen/waiter apps via WebSocket, Bold payment terminals",
+        "Lead product, engineering, sales and customer onboarding, including DIAN digital-certificate management for clients"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Institucion Universitaria EAM",
+      "area": "Software Engineering",
+      "studyType": "Bachelor's Degree",
+      "startDate": "2023-02"
+    },
+    {
+      "institution": "TripleTen LatAm",
+      "area": "QA Engineer",
+      "studyType": "Bootcamp",
+      "startDate": "2024-12",
+      "endDate": "2025-06"
+    },
+    {
+      "institution": "Next U",
+      "area": "Web Developer",
+      "studyType": "Course",
+      "startDate": "2022-02",
+      "endDate": "2022-02"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Spring Boot: Backend Enterprise Professional Certificate",
+      "issuer": "Dev Senior Code",
+      "date": "2025-12"
+    },
+    {
+      "name": "QA Engineer Bootcamp",
+      "issuer": "TripleTen LatAm",
+      "date": "2025-06"
+    },
+    {
+      "name": "Scrum Fundamentals Certified (SFC)",
+      "issuer": "VMEdu inc",
+      "date": "2024-02"
+    },
+    {
+      "name": "Desarrollo Web y UX/UI",
+      "issuer": "Next U",
+      "date": "2022-02"
+    },
+    {
+      "name": "DevOps, APIs and Microservices Architecture Fundamentals",
+      "issuer": "Udemy",
+      "date": "2025-02"
+    },
+    {
+      "name": "Angular",
+      "issuer": "Edutin Academy",
+      "date": "2025-03"
+    },
+    {
+      "name": "Spring Framework",
+      "issuer": "Udemy",
+      "date": "2025-05"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "keywords": [
+        "Java",
+        "Go",
+        "TypeScript",
+        "Python",
+        "SQL"
+      ]
+    },
+    {
+      "name": "Frameworks & Libraries",
+      "keywords": [
+        "Spring Boot",
+        "React",
+        "Node.js",
+        "Next.js",
+        "Angular",
+        "Wails",
+        "Selenium"
+      ]
+    },
+    {
+      "name": "DevOps & Tools",
+      "keywords": [
+        "Git",
+        "Docker",
+        "Cloudflare (Pages/D1/R2)",
+        "Scrum"
+      ]
+    },
+    {
+      "name": "Software Engineering",
+      "keywords": [
+        "OOP",
+        "Design Patterns",
+        "Data Structures",
+        "Clean Code",
+        "Hexagonal Architecture",
+        "Microservices"
+      ]
+    },
+    {
+      "name": "Areas of Expertise",
+      "keywords": [
+        "Backend & Frontend Development",
+        "Software Architecture",
+        "QA",
+        "Usability"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional"
+    }
+  ],
+  "projects": [
+    {
+      "name": "LyrooPOS — Restaurant Point of Sale",
+      "description": "Lyroo's flagship product: a desktop point of sale for Colombian restaurants, shipping in production at v1.2. Touchscreen-optimized sales, real-time kitchen and waiter apps over WebSocket, DIAN electronic invoicing built in, Bold card terminals, inventory with automatic deduction, split billing, and AI automation over MCP. It keeps selling with the internet down and syncs invoices to the DIAN when the connection returns.",
+      "keywords": [
+        "Go",
+        "Wails",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "WebSocket"
+      ],
+      "roles": [
+        "Founder & Lead Engineer"
+      ],
+      "url": "https://pos-system.v1.andrewgarcia.dev",
+      "entity": "Lyroo S.A.S"
+    },
+    {
+      "name": "Lyroo DIAN Engine",
+      "description": "The proprietary core behind every Lyroo product: UBL 2.1 XML for invoices, credit and debit notes, support documents, POS and payroll; XAdES-EPES signing with PKCS12 certificates; CUFE/CUDE/CUNE hashing; WS-Security SOAP transmission to the DIAN VPFE; and PDF rendering for both A4 and 80mm thermal. Embedded as plain Go calls rather than a separate API server to deploy.",
+      "keywords": [
+        "Go",
+        "UBL 2.1",
+        "XAdES-EPES",
+        "SOAP / WS-Security",
+        "PKCS12"
+      ],
+      "roles": [
+        "Sole author"
+      ],
+      "entity": "Lyroo S.A.S"
+    },
+    {
+      "name": "Liria — Vertical micro-drama platform",
+      "description": "A streaming platform for vertical micro-dramas (50–100 episodes of 1–2 minutes) and AI-assisted comics, with a co-creating community and radical-transparency monetization: coins that never expire, full price shown up front, server-side verified rewarded ads, and one-click VIP cancellation. Built on a double-entry, idempotent coin ledger with a three-way unlock gate (free / coins / ad).",
+      "keywords": [
+        "NestJS",
+        "Prisma",
+        "PostgreSQL",
+        "Redis",
+        "React Native (Expo)",
+        "React"
+      ],
+      "roles": [
+        "Founder & Lead Engineer"
+      ],
+      "entity": "Lyroo S.A.S"
+    },
+    {
+      "name": "Lyfin — Personal finance for Colombia",
+      "description": "A personal finance app for Colombia — expenses, debts, budgets and payment reminders — across an Android (Kotlin/Compose) and a PWA (React/TS) client. Everything works offline and lives encrypted on the device. Money is integer minor units only (COP has no cents), and the two clients are kept in lockstep by shared golden vectors both test suites run in CI, since there is no shared KMP layer.",
+      "keywords": [
+        "Kotlin",
+        "Jetpack Compose",
+        "React",
+        "TypeScript",
+        "SQLCipher"
+      ],
+      "roles": [
+        "Founder & Lead Engineer"
+      ],
+      "entity": "Lyroo S.A.S"
+    },
+    {
+      "name": "LyDeck — Control deck for coding agents",
+      "description": "A GPU-rendered terminal that doubles as the control panel for the CLI coding agents you already use. Approvable diffs, live token and cost, MCP servers and permissions edited in a real UI that writes your CLI's own native config files, a lane-per-worktree visual Git client, and an embedded local model for offline command help. Agent-neutral by design: no account, no telemetry.",
+      "keywords": [
+        "Rust",
+        "Tauri",
+        "React",
+        "TypeScript",
+        "WebGPU"
+      ],
+      "roles": [
+        "Founder & Lead Engineer"
+      ],
+      "entity": "Lyroo S.A.S"
+    },
+    {
+      "name": "AI Content Bot",
+      "description": "Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex, Gemini CLI, Kimi, Cursor…) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Features AI visual QA that regenerates bad frames, a human-in-the-loop approval panel (PWA), content planning from history, and one-click publishing to Meta.",
+      "keywords": [
+        "Node.js",
+        "TypeScript",
+        "AI Agents",
+        "Remotion",
+        "FFmpeg",
+        "Cloudflare D1/R2"
+      ],
+      "roles": [
+        "Sole author"
+      ],
+      "url": "https://ai-content-bot-demo.andrewgarcia.dev"
+    },
+    {
+      "name": "Project Blueprint",
+      "description": "Turns a raw idea into a validated, code-ready blueprint before a line of code is written, through five gated phases: frame, discover, architect, harden, plan. Each phase has an exit gate, and the ceremony scales to the size of the work (Lite / Standard / Full). Portable across Claude Code, Cursor and the wider agent-skills ecosystem.",
+      "keywords": [
+        "Agent Skills",
+        "Markdown",
+        "Software Architecture",
+        "C4 / Mermaid"
+      ],
+      "roles": [
+        "Sole author"
+      ]
+    },
+    {
+      "name": "QR Permanente",
+      "description": "A fully static QR generator with 10 preloaded templates (URL, restaurant menu, WiFi, vCard, payments, calendar events…), six dot styles, gradients, a logo embedded in the SVG rather than overlaid, and export to SVG, PNG, JPEG or WebP. Because nothing is stored server-side, the codes can never break or expire.",
+      "keywords": [
+        "Astro",
+        "Tailwind CSS v4",
+        "TypeScript",
+        "Cloudflare Pages"
+      ],
+      "roles": [
+        "Sole author"
+      ],
+      "url": "https://qr-permanente.pages.dev"
+    },
+    {
+      "name": "VetApp — Veterinary clinic management",
+      "description": "Full-stack management system for veterinary clinics: owners and pets, appointments and medical consultations, vaccinations, treatments, and reminders. The API follows Domain-Driven Design across domain, application, infrastructure and interface layers, with MapStruct mapping and OpenAPI docs; the client is an Angular 19 SPA with Tailwind.",
+      "keywords": [
+        "Java 17",
+        "Spring Boot 3.4",
+        "DDD",
+        "MySQL",
+        "Angular 19",
+        "Tailwind"
+      ],
+      "roles": [
+        "University project"
+      ]
+    },
+    {
+      "name": "Airbnb-style booking platform",
+      "description": "A property rental platform covering the full booking flow: JWT authentication with role-based access, property listings with images and amenities, availability and reservations. The API is NestJS with Prisma over MySQL and cache-manager; the client is Vue 3 with Pinia stores, Vue Router and Playwright end-to-end tests.",
+      "keywords": [
+        "NestJS",
+        "Prisma",
+        "MySQL",
+        "Vue 3",
+        "Pinia",
+        "Playwright"
+      ],
+      "roles": [
+        "University project"
+      ]
+    },
+    {
+      "name": "UniLocal — Discover local businesses",
+      "description": "A Jetpack Compose app for finding and rating nearby shops, restaurants and services. Interactive Mapbox map with category filters, place creation with photos and schedules, reviews, favourites, and a moderator role with an approval queue and statistics. Firebase Auth and Firestore for the backend, Cloudinary for image uploads, full Material 3 light and dark themes.",
+      "keywords": [
+        "Kotlin",
+        "Jetpack Compose",
+        "MVVM",
+        "Firebase",
+        "Mapbox",
+        "Cloudinary"
+      ],
+      "roles": [
+        "Solo build, from a team course project"
+      ]
+    },
+    {
+      "name": "BondBox — Collaborative family organizer",
+      "description": "A web platform for families to organize together: tasks and calendar, shared inventory, group communication and household finances. Built by a team of four; I owned the Bondy AI assistant and the finance module. React 18 with Zustand, React Hook Form and Zod validation, tested with Vitest and shipped in Docker behind nginx.",
+      "keywords": [
+        "React 18",
+        "TypeScript",
+        "Zustand",
+        "Zod",
+        "Vitest",
+        "Docker"
+      ],
+      "roles": [
+        "Team of 4 · AI & Finance modules"
+      ]
+    },
+    {
+      "name": "ApiTravel — Travel booking API",
+      "description": "A REST API for browsing and booking travel packages, covering customers, trips, day-by-day itineraries and reservations. Domain-Driven Design splits domain, persistence and web layers; business rules such as unique emails and valid date ranges are enforced in the domain and covered by unit tests, with the surface documented via OpenAPI.",
+      "keywords": [
+        "Java",
+        "Spring Boot",
+        "DDD",
+        "JPA",
+        "OpenAPI"
+      ],
+      "roles": [
+        "University project"
+      ]
+    },
+    {
+      "name": "Encubierto",
+      "description": "A story-driven isometric game built in Unity across a dozen hand-built scenes. Custom dialogue systems per character and level, an inventory with usable items, trigger-based encounters and suspicion zones, a persistent settings system for audio and text, and a full menu-to-credits flow.",
+      "keywords": [
+        "Unity",
+        "C#",
+        "2D Isometric",
+        "Audio Mixer"
+      ],
+      "roles": [
+        "Team project"
+      ]
+    },
+    {
+      "name": "The Garden's Curse",
+      "description": "A Unity game built around a sequence of levels with their own environments, materials and soundtrack, from an opening scene through to credits. A second run at game development after Encubierto, focused on tightening the environment art and audio design.",
+      "keywords": [
+        "Unity",
+        "C#",
+        "Game Design"
+      ],
+      "roles": [
+        "Team project"
+      ]
+    }
+  ]
+}
