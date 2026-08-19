@@ -348,6 +348,36 @@ export const cvData: CVData = {
 
     // ── Game development ───────────────────────────────────────────────────
     {
+      slug: "rummikub",
+      title: "Rummikub — Real-time multiplayer",
+      tagline: "2–8 player Rummikub on Cloudflare Workers, free to run.",
+      description:
+        "Open it with a link and play from any phone, 2 to 8 players, running entirely on Cloudflare's free tier: one Durable Object per room holds the game and its WebSockets, and the Hibernation API means an idle table costs nothing. The rules live in a pure engine with no React, network or clock in it, so the server re-validates every proposed board — tile conservation as multiset equality — and editing the browser's JavaScript gets you nowhere. Tiles shrink and reflow so the board never scrolls, and a long press lifts a whole run at once. Verified by 220 unit tests and by bots that play full games against each other. The lesson that stuck came from production: a Durable Object alarm scheduled in the past re-fires immediately, and that loop ate a day's quota in under an hour.",
+      role: "Sole author",
+      year: "2026",
+      techStack: [
+        "Cloudflare Workers",
+        "Durable Objects",
+        "WebSocket",
+        "React",
+        "TypeScript",
+        "Playwright"
+      ],
+      links: [
+        { label: "Play now", url: "https://rummikub.andrewgarcia.dev", kind: "site" }
+      ],
+      privateRepo: true,
+      imageUrl: "/projects/rummikub-mesa.png",
+      images: [
+        "/projects/rummikub-mesa.png",
+        "/projects/rummikub-sala.png",
+        "/projects/rummikub-movil.png"
+      ],
+      status: "completed",
+      category: "game",
+      featured: true
+    },
+    {
       slug: "encubierto",
       title: "Encubierto",
       tagline: "2D isometric narrative stealth game.",
