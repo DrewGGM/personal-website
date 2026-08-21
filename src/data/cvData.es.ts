@@ -358,7 +358,7 @@ export const cvDataES: CVData = {
       title: "Rummikub — Multijugador en tiempo real",
       tagline: "Rummikub de 2 a 8 jugadores sobre Cloudflare Workers, sin coste.",
       description:
-        "Se abre con un enlace y se juega desde cualquier móvil, de 2 a 8 jugadores, funcionando entero en la capa gratuita de Cloudflare: un Durable Object por sala guarda la partida y sus WebSockets, y la API de hibernación hace que una mesa parada no cueste nada. Las reglas viven en un motor puro, sin React, sin red y sin reloj dentro, así que el servidor revalida cada mesa propuesta —conservación de fichas como igualdad de multiconjuntos— y editar el JavaScript del navegador no sirve de nada. Las fichas encogen y se recolocan solas para que el tablero nunca haga scroll, y una pulsación larga levanta la escalera entera. Verificado con 220 pruebas unitarias y con robots que juegan partidas enteras entre sí. La lección que se quedó vino de producción: una alarma de Durable Object programada en el pasado se vuelve a disparar al instante, y ese bucle se comió la cuota diaria en menos de una hora.",
+        "Se abre con un enlace y se juega desde cualquier móvil, de 2 a 8 jugadores, funcionando entero en la capa gratuita de Cloudflare: un Durable Object por sala guarda la partida y sus WebSockets, y la API de hibernación hace que una mesa parada no cueste nada. Las reglas viven en un motor puro, sin React, sin red y sin reloj dentro, así que el servidor revalida cada mesa propuesta —conservación de fichas como igualdad de multiconjuntos— y editar el JavaScript del navegador no sirve de nada. Las fichas encogen y se recolocan solas para que el tablero nunca haga scroll, y una pulsación larga levanta la escalera entera. Verificado con 236 pruebas unitarias y con robots que juegan partidas enteras entre sí. La lección que se quedó vino de producción: una alarma de Durable Object programada en el pasado se vuelve a disparar al instante, y ese bucle se comió la cuota diaria en menos de una hora.",
       role: "Autor único",
       year: "2026",
       techStack: [
@@ -370,9 +370,9 @@ export const cvDataES: CVData = {
         "Playwright"
       ],
       links: [
-        { label: "Jugar ahora", url: "https://rummikub.andrewgarcia.dev", kind: "site" }
+        { label: "Jugar ahora", url: "https://rummikub.andrewgarcia.dev", kind: "site" },
+        { label: "Código", url: "https://github.com/DrewGGM/lyroo-rummikub", kind: "repo" }
       ],
-      privateRepo: true,
       imageUrl: "/projects/rummikub-mesa.png",
       images: [
         "/projects/rummikub-mesa.png",
