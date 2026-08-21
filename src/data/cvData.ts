@@ -348,6 +348,39 @@ export const cvData: CVData = {
 
     // ── Game development ───────────────────────────────────────────────────
     {
+      slug: "fuse",
+      title: "Fuse — Daily chain reaction",
+      tagline: "One board a day, the same one for everyone, playable with no signal.",
+      description:
+        "A daily chain-reaction puzzle: place five pieces, release a spark, watch it bounce and light the board. Everyone gets the same board because it is derived from the date, so there is nothing to fetch before you can play. No engine and no game framework — the board is drawn on a canvas and the rules live in a pure simulation module with no DOM, no network and no clock in it, which is exactly why the same file runs on the device and again inside the Worker: every submitted score is replayed server-side, so a forged one comes back as a mismatch and never reaches the board. Three ranked attempts a day on Cloudflare Workers and D1, an installable PWA that plays a full game offline, and the same core packaged for Android through Capacitor. Sound is eight CC0 one-shots, each keeping a synthesised fallback so a failed download costs texture rather than silence. Verified by close to 300 unit tests and 58 end-to-end. The lesson came from attacking my own deployment: the daily attempt limit counted, checked and then inserted — three steps every sequential test passed and that eight concurrent submissions walked straight through. It is now enforced inside the INSERT itself, where it cannot be raced.",
+      role: "Sole author",
+      year: "2026",
+      techStack: [
+        "TypeScript",
+        "Canvas 2D",
+        "Cloudflare Workers",
+        "D1",
+        "PWA",
+        "Capacitor",
+        "Playwright"
+      ],
+      links: [
+        { label: "Play now", url: "https://fuse.andrewgarcia.dev", kind: "site" },
+        { label: "Web source", url: "https://github.com/DrewGGM/fuse-web", kind: "repo" },
+        { label: "Android source", url: "https://github.com/DrewGGM/fuse-game", kind: "repo" }
+      ],
+      imageUrl: "/projects/fuse-cadena.png",
+      images: [
+        "/projects/fuse-cadena.png",
+        "/projects/fuse-inicio.png",
+        "/projects/fuse-tablero.png",
+        "/projects/fuse-resultado.png"
+      ],
+      status: "completed",
+      category: "game",
+      featured: true
+    },
+    {
       slug: "rummikub",
       title: "Rummikub — Real-time multiplayer",
       tagline: "2–8 player Rummikub on Cloudflare Workers, free to run.",

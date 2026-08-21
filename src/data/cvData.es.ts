@@ -354,6 +354,39 @@ export const cvDataES: CVData = {
 
     // ── Desarrollo de videojuegos ──────────────────────────────────────────
     {
+      slug: "fuse",
+      title: "Fuse — Reacción en cadena diaria",
+      tagline: "Un tablero al día, el mismo para todos, jugable sin cobertura.",
+      description:
+        "Un puzle diario de reacción en cadena: colocas cinco piezas, sueltas una chispa y la ves rebotar y encender el tablero. Todo el mundo recibe el mismo tablero porque se deriva de la fecha, así que no hay nada que descargar antes de jugar. Sin motor y sin framework de juego: el tablero se dibuja en un canvas y las reglas viven en un módulo de simulación puro, sin DOM, sin red y sin reloj dentro, que es justo por lo que el mismo archivo corre en el dispositivo y otra vez dentro del Worker: cada puntuación enviada se vuelve a simular en el servidor, así que una falsificada vuelve como discrepancia y nunca llega a la clasificación. Tres intentos con ranking al día sobre Cloudflare Workers y D1, una PWA instalable que juega una partida entera sin conexión, y el mismo núcleo empaquetado para Android con Capacitor. El sonido son ocho muestras CC0, cada una con su respaldo sintetizado para que una descarga fallida cueste textura y no silencio. Verificado con cerca de 300 pruebas unitarias y 58 de extremo a extremo. La lección salió de atacar mi propio despliegue: el límite diario de intentos contaba, comprobaba y luego insertaba —tres pasos que pasaban todas las pruebas secuenciales y por los que ocho envíos simultáneos entraron sin despeinarse. Ahora se aplica dentro del propio INSERT, donde no hay carrera posible.",
+      role: "Autor único",
+      year: "2026",
+      techStack: [
+        "TypeScript",
+        "Canvas 2D",
+        "Cloudflare Workers",
+        "D1",
+        "PWA",
+        "Capacitor",
+        "Playwright"
+      ],
+      links: [
+        { label: "Jugar ahora", url: "https://fuse.andrewgarcia.dev", kind: "site" },
+        { label: "Código web", url: "https://github.com/DrewGGM/fuse-web", kind: "repo" },
+        { label: "Código Android", url: "https://github.com/DrewGGM/fuse-game", kind: "repo" }
+      ],
+      imageUrl: "/projects/fuse-cadena.png",
+      images: [
+        "/projects/fuse-cadena.png",
+        "/projects/fuse-inicio.png",
+        "/projects/fuse-tablero.png",
+        "/projects/fuse-resultado.png"
+      ],
+      status: "completed",
+      category: "game",
+      featured: true
+    },
+    {
       slug: "rummikub",
       title: "Rummikub — Multijugador en tiempo real",
       tagline: "Rummikub de 2 a 8 jugadores sobre Cloudflare Workers, sin coste.",
