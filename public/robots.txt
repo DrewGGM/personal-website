@@ -1,14 +1,26 @@
 User-agent: *
 Allow: /
 
-# OJO: Cloudflare antepone su bloque "Managed Content" a este archivo antes de
-# servirlo, y ese bloque hoy pone Disallow: / a ClaudeBot, GPTBot,
-# Google-Extended, CCBot, Bytespider, Amazonbot, Applebot-Extended y
-# meta-externalagent, con Content-Signal: ai-train=no.
+# El portafolio es público a propósito, rastreadores de IA incluidos: que un
+# asistente pueda citarlo al responder "backend developer Colombia" vale más
+# que ocultarlo.
 #
-# Es decir: los buscadores clásicos indexan con normalidad, pero los asistentes
-# de IA no pueden leer ni citar el portafolio. Eso NO se cambia desde aquí — se
-# desactiva en el panel de Cloudflare, en AI Crawl Control / Content Signals.
-# Compruébalo con: curl -s https://andrewgarcia.dev/robots.txt
+# Para que esto se cumpla de verdad hubo que tocar dos ajustes en Cloudflare
+# (zona andrewgarcia.dev, API /zones/{id}/bot_management), porque el edge
+# mandaba por encima de este archivo:
+#
+#   ai_bots_protection    "block" -> "disabled"
+#       Bloqueaba a los bots de IA con 403 en el edge. No era una preferencia:
+#       era un bloqueo efectivo.
+#   is_robots_txt_managed  true   -> false
+#       Anteponía un bloque "Cloudflare Managed Content" con Disallow: / para
+#       ClaudeBot, GPTBot, Google-Extended, CCBot, Bytespider, Amazonbot,
+#       Applebot-Extended y meta-externalagent, más Content-Signal ai-train=no.
+#
+# Si algún día vuelven a salir 403 o reaparece ese bloque, mira ahí primero.
+# Cloudflare cambia los valores por defecto el 15 de septiembre de 2026.
+# Comprobación rápida:
+#   curl -s https://andrewgarcia.dev/robots.txt
+#   curl -o /dev/null -w '%{http_code}\n' -A ClaudeBot https://andrewgarcia.dev/
 
 Sitemap: https://andrewgarcia.dev/sitemap.xml
