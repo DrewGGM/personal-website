@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
 export default function ParticleBackground() {
   const [init, setInit] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    // Con reduced-motion no se arranca el motor siquiera: son 60 fps de canvas
+    // permanentes que la regla CSS de prefers-reduced-motion no puede detener.
+    if (reduceMotion) return;
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => setInit(true));
-  }, []);
+  }, [reduceMotion]);
 
-  if (!init) return null;
+  if (reduceMotion || !init) return null;
 
   return (
     <Particles

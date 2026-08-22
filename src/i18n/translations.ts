@@ -9,7 +9,7 @@
 export type Language = 'en' | 'es';
 
 export interface Translation {
-  meta: { title: string };
+  meta: { title: string; description: string };
   nav: {
     home: string;
     about: string;
@@ -101,7 +101,11 @@ export interface Translation {
 }
 
 const en: Translation = {
-  meta: { title: 'Andrew Garcia | Software Engineer' },
+  meta: {
+    title: 'Andrew Garcia | Backend Software Engineer — Java, Spring Boot, Go',
+    description:
+      'Andrew Garcia Mosquera — backend software engineer in Armenia, Colombia. Java and Spring Boot, Go, and software architecture. Founder of Lyroo, building LyrooPOS with an embedded DIAN e-invoicing engine. Open to backend and full-stack roles.',
+  },
   nav: {
     home: 'Home',
     about: 'About',
@@ -233,7 +237,11 @@ const en: Translation = {
 };
 
 const es: Translation = {
-  meta: { title: 'Andrew Garcia | Ingeniero de Software' },
+  meta: {
+    title: 'Andrew Garcia | Ingeniero de Software Backend — Java, Spring Boot, Go',
+    description:
+      'Andrew Garcia Mosquera — ingeniero de software backend en Armenia, Colombia. Java y Spring Boot, Go y arquitectura de software. Fundador de Lyroo, donde construyo LyrooPOS con un motor de facturación electrónica DIAN incrustado. Disponible para roles backend y full-stack.',
+  },
   nav: {
     home: 'Inicio',
     about: 'Sobre mí',

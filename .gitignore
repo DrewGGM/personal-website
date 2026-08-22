@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generado por `npm run sitemap` (prebuild), no se versiona
+public/sitemap.xml

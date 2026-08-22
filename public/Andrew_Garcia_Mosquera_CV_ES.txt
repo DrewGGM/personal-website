@@ -9,7 +9,7 @@ Go, arquitectura hexagonal). Actualmente desarrollo sistemas de core bancario en
 JAMS Technologies, mientras lidero producto e ingeniería en Lyroo. Sólida base en QA, código limpio y metodologías ágiles.
 EXPERIENCIA
 Desarrollador de Software Junior
-Financiera Cofincafé (Cooperativa de Ahorro y Crédito) | Armenia, Quindío, Colombia | ago 2026 - Actual (previsto)
+Financiera Cofincafé (Cooperativa de Ahorro y Crédito) | Armenia, Quindío, Colombia | ago 2026 - Actual
 Vinculado como desarrollador tras la práctica, continuando en la plataforma de core bancario de la cooperativa.
 Desarrollo y mantenimiento de funcionalidades sobre el core bancario Apache Fineract
 Soporte a productos financieros y configuración de módulos bancarios en producción
@@ -39,12 +39,12 @@ vía WebSocket y datáfonos Bold
 Lidero producto, ingeniería, ventas y onboarding de clientes, incluida la gestión de certificados digitales DIAN para los clientes
 PROYECTOS
 LyrooPOS - Punto de venta para restaurantes pos-system.v1.andrewgarcia.dev | gh:DrewGGM/demo-pos-system
-El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en su versión 1.2. Stack: Go,
-Wails, React, TypeScript, PostgreSQL, WebSocket.
+El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en v1.2 y con clientes de
+pago desde julio de 2026. Stack: Go, Wails, React, TypeScript, PostgreSQL, WebSocket.
 AI Content Bot ai-content-bot-demo.andrewgarcia.dev | gh:DrewGGM/ai-content-bot
-Genera reels, carruseles, publicaciones y videos con motion renderizados por código para cualquier marca usando CUALQUIER agente
-de código (Claude Code, Codex, Gemini CLI, Kimi, Cursor...) o API de LLM (compatible con OpenAI, OpenRouter, Ollama). Stack:
-Node.js, TypeScript, Agentes IA, Remotion, FFmpeg, Cloudflare D1/R2.
+Genera reels, carruseles, posts y vídeos animados renderizados desde código para cualquier marca, movido por CUALQUIER agente de
+código (Claude Code, Codex, Gemini CLI, Cursor...) o cualquier API LLM compatible con OpenAI, OpenRouter u Ollama. Stack: Node.js,
+TypeScript, Agentes IA, Remotion, FFmpeg, Cloudflare D1/R2.
 VetApp - Gestión de clínicas veterinarias gh:DrewGGM/Proyecto-AppsEmpresariales-VetApi
 Sistema full-stack para clínicas veterinarias: propietarios y mascotas, citas y consultas médicas, vacunaciones, tratamientos y
 recordatorios. Stack: Java 17, Spring Boot 3.4, DDD, MySQL, Angular 19, Tailwind.

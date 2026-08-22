@@ -144,7 +144,12 @@ export const cvDataES: CVData = {
       title: "LyrooPOS — Punto de venta para restaurantes",
       tagline: "POS de escritorio offline-first con facturación DIAN embebida.",
       description:
-        "El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en su versión 1.2. Ventas optimizadas para pantalla táctil, apps de cocina y mesero en tiempo real por WebSocket, facturación electrónica DIAN integrada, datáfonos Bold, inventario con descuento automático, división de cuentas y automatización con IA vía MCP. Sigue vendiendo sin internet y sincroniza las facturas con la DIAN cuando vuelve la conexión.",
+        "El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en v1.2 y con clientes de pago desde julio de 2026. Ventas optimizadas para pantalla táctil, apps de cocina y mesero en tiempo real por WebSocket, inventario con descuento automático y división de cuentas.",
+      highlights: [
+        "Facturación electrónica DIAN incrustada en la propia aplicación — sin API de terceros ni costo por documento.",
+        "Offline-first: sigue vendiendo con el internet caído y sincroniza con la DIAN cuando vuelve la conexión.",
+        "Backend en Go (Wails) con más de 31 servicios sobre PostgreSQL, datáfonos Bold y automatización con IA por MCP.",
+      ],
       role: "Fundador e Ingeniero Principal",
       year: "2025 — presente",
       techStack: ["Go", "Wails", "React", "TypeScript", "PostgreSQL", "WebSocket"],
@@ -152,11 +157,11 @@ export const cvDataES: CVData = {
         { label: "Demo en vivo", url: "https://pos-system.v1.andrewgarcia.dev", kind: "demo" },
         { label: "Código del demo", url: "https://github.com/DrewGGM/demo-pos-system", kind: "repo" }
       ],
-      imageUrl: "/projects/pos-main.png",
+      imageUrl: "/projects/pos-main.webp",
       images: [
-        "/projects/pos-main.png",
-        "/projects/pos-dashboard.png",
-        "/projects/pos-products.png"
+        "/projects/pos-main.webp",
+        "/projects/pos-dashboard.webp",
+        "/projects/pos-products.webp"
       ],
       status: "completed",
       category: "startup",
@@ -222,7 +227,12 @@ export const cvDataES: CVData = {
       title: "AI Content Bot",
       tagline: "Fábrica de contenido para redes, agnóstica de agente.",
       description:
-        "Genera reels, carruseles, publicaciones y videos con motion renderizados por código para cualquier marca usando CUALQUIER agente de código (Claude Code, Codex, Gemini CLI, Kimi, Cursor…) o API de LLM (compatible con OpenAI, OpenRouter, Ollama). Incluye QA visual con IA que regenera los frames malos, un panel de aprobación con humano en el ciclo (PWA), planificación de contenido a partir del historial y publicación en Meta con un clic.",
+        "Genera reels, carruseles, posts y vídeos animados renderizados desde código para cualquier marca, movido por CUALQUIER agente de código (Claude Code, Codex, Gemini CLI, Cursor…) o cualquier API LLM compatible con OpenAI, OpenRouter u Ollama.",
+      highlights: [
+        "Un QA visual con IA revisa cada render y regenera los fotogramas que salieron mal.",
+        "Panel de aprobación con persona en el circuito (PWA): nada se publica sin que alguien lo apruebe.",
+        "Planifica el siguiente lote a partir de lo ya publicado y sube a Meta con un clic.",
+      ],
       role: "Autor único",
       year: "2026",
       techStack: ["Node.js", "TypeScript", "Agentes IA", "Remotion", "FFmpeg", "Cloudflare D1/R2"],
@@ -230,12 +240,12 @@ export const cvDataES: CVData = {
         { label: "Demo en vivo", url: "https://ai-content-bot-demo.andrewgarcia.dev", kind: "demo" },
         { label: "Código", url: "https://github.com/DrewGGM/ai-content-bot", kind: "repo" }
       ],
-      imageUrl: "/projects/content-bot-panel.png",
+      imageUrl: "/projects/content-bot-panel.webp",
       images: [
-        "/projects/content-bot-panel.png",
-        "/projects/content-bot-pieces.png",
-        "/projects/content-bot-generate.png",
-        "/projects/content-bot-mobile.png"
+        "/projects/content-bot-panel.webp",
+        "/projects/content-bot-pieces.webp",
+        "/projects/content-bot-generate.webp",
+        "/projects/content-bot-mobile.webp"
       ],
       status: "completed",
       category: "product",
@@ -358,7 +368,12 @@ export const cvDataES: CVData = {
       title: "Fuse — Reacción en cadena diaria",
       tagline: "Un tablero al día, el mismo para todos, jugable sin cobertura.",
       description:
-        "Un puzle diario de reacción en cadena: colocas cinco piezas, sueltas una chispa y la ves rebotar y encender el tablero. Todo el mundo recibe el mismo tablero porque se deriva de la fecha, así que no hay nada que descargar antes de jugar. Sin motor y sin framework de juego: el tablero se dibuja en un canvas y las reglas viven en un módulo de simulación puro, sin DOM, sin red y sin reloj dentro, que es justo por lo que el mismo archivo corre en el dispositivo y otra vez dentro del Worker: cada puntuación enviada se vuelve a simular en el servidor, así que una falsificada vuelve como discrepancia y nunca llega a la clasificación. Tres intentos con ranking al día sobre Cloudflare Workers y D1, una PWA instalable que juega una partida entera sin conexión, y el mismo núcleo empaquetado para Android con Capacitor. El sonido son ocho muestras CC0, cada una con su respaldo sintetizado para que una descarga fallida cueste textura y no silencio. Verificado con cerca de 300 pruebas unitarias y 58 de extremo a extremo. La lección salió de atacar mi propio despliegue: el límite diario de intentos contaba, comprobaba y luego insertaba —tres pasos que pasaban todas las pruebas secuenciales y por los que ocho envíos simultáneos entraron sin despeinarse. Ahora se aplica dentro del propio INSERT, donde no hay carrera posible.",
+        "Un puzle diario de reacción en cadena: colocas cinco piezas, sueltas la chispa y ves cómo rebota y enciende el tablero. Todos juegan el mismo tablero porque se deriva de la fecha, así que no hay nada que descargar antes de empezar. Sin motor ni framework de juego — un canvas, y unas reglas que viven en un módulo de simulación puro, sin DOM, sin red y sin reloj.",
+      highlights: [
+        "Ese mismo módulo corre otra vez dentro del Worker de Cloudflare: cada puntuación enviada se re-simula en el servidor, así que una falsificada vuelve como discrepancia y nunca llega al tablero.",
+        "Una PWA instalable que juega una partida completa sin conexión, y el mismo núcleo empaquetado para Android con Capacitor.",
+        "Cerca de 300 tests unitarios y 58 end-to-end. Atacar mi propio despliegue destapó una carrera en el límite diario de intentos — ahora se aplica dentro del propio INSERT, donde no se puede correr.",
+      ],
       role: "Autor único",
       year: "2026",
       techStack: [
@@ -375,12 +390,12 @@ export const cvDataES: CVData = {
         { label: "Código web", url: "https://github.com/DrewGGM/fuse-web", kind: "repo" },
         { label: "Código Android", url: "https://github.com/DrewGGM/fuse-game", kind: "repo" }
       ],
-      imageUrl: "/projects/fuse-cadena.png",
+      imageUrl: "/projects/fuse-cadena.webp",
       images: [
-        "/projects/fuse-cadena.png",
-        "/projects/fuse-inicio.png",
-        "/projects/fuse-tablero.png",
-        "/projects/fuse-resultado.png"
+        "/projects/fuse-cadena.webp",
+        "/projects/fuse-inicio.webp",
+        "/projects/fuse-tablero.webp",
+        "/projects/fuse-resultado.webp"
       ],
       status: "completed",
       category: "game",
@@ -391,7 +406,12 @@ export const cvDataES: CVData = {
       title: "Rummikub — Multijugador en tiempo real",
       tagline: "Rummikub de 2 a 8 jugadores sobre Cloudflare Workers, sin coste.",
       description:
-        "Se abre con un enlace y se juega desde cualquier móvil, de 2 a 8 jugadores, funcionando entero en la capa gratuita de Cloudflare: un Durable Object por sala guarda la partida y sus WebSockets, y la API de hibernación hace que una mesa parada no cueste nada. Las reglas viven en un motor puro, sin React, sin red y sin reloj dentro, así que el servidor revalida cada mesa propuesta —conservación de fichas como igualdad de multiconjuntos— y editar el JavaScript del navegador no sirve de nada. Las fichas encogen y se recolocan solas para que el tablero nunca haga scroll, y una pulsación larga levanta la escalera entera. Verificado con 236 pruebas unitarias y con robots que juegan partidas enteras entre sí. La lección que se quedó vino de producción: una alarma de Durable Object programada en el pasado se vuelve a disparar al instante, y ese bucle se comió la cuota diaria en menos de una hora.",
+        "Lo abres con un enlace y juegas desde cualquier móvil, de 2 a 8 jugadores, entero sobre el plan gratuito de Cloudflare. Un Durable Object por sala guarda la partida y sus WebSockets, y la Hibernation API hace que una mesa inactiva no cueste nada. Las reglas viven en un motor puro, sin React, sin red y sin reloj.",
+      highlights: [
+        "El servidor revalida cada tablero propuesto — conservación de fichas como igualdad de multiconjuntos — así que editar el JavaScript del navegador no lleva a ninguna parte.",
+        "Las fichas se encogen y se reordenan para que el tablero nunca haga scroll, y una pulsación larga levanta una escalera entera.",
+        "236 tests unitarios y bots que juegan partidas completas entre ellos. Producción me enseñó que una alarma de Durable Object programada en el pasado se re-dispara al instante: ese bucle se comió la cuota de un día en menos de una hora.",
+      ],
       role: "Autor único",
       year: "2026",
       techStack: [
@@ -406,11 +426,11 @@ export const cvDataES: CVData = {
         { label: "Jugar ahora", url: "https://rummikub.andrewgarcia.dev", kind: "site" },
         { label: "Código", url: "https://github.com/DrewGGM/lyroo-rummikub", kind: "repo" }
       ],
-      imageUrl: "/projects/rummikub-mesa.png",
+      imageUrl: "/projects/rummikub-mesa.webp",
       images: [
-        "/projects/rummikub-mesa.png",
-        "/projects/rummikub-sala.png",
-        "/projects/rummikub-movil.png"
+        "/projects/rummikub-mesa.webp",
+        "/projects/rummikub-sala.webp",
+        "/projects/rummikub-movil.webp"
       ],
       status: "completed",
       category: "game",

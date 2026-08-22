@@ -1,24 +1,149 @@
 <!doctype html>
+<!-- lang lo reescribe LanguageProvider al cambiar de idioma; "en" es el valor por defecto -->
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/andrew_logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Andrew Garcia | Software Engineer</title>
-    <meta name="description" content="Andrew Garcia Mosquera - Software Engineering Student specializing in backend development and application architecture." />
+
+    <title>Andrew Garcia | Backend Software Engineer — Java, Spring Boot, Go</title>
+    <meta
+      name="description"
+      content="Andrew Garcia Mosquera — backend software engineer in Armenia, Colombia. Java and Spring Boot, Go, and software architecture. Founder of Lyroo, building LyrooPOS with an embedded DIAN e-invoicing engine. Open to backend and full-stack roles."
+    />
     <meta name="author" content="Andrew Garcia Mosquera" />
-    <meta name="keywords" content="Software Engineer, Backend Developer, Java, Spring Boot, Portfolio, Andrew Garcia" />
-    <link rel="canonical" href="https://andrewgarcia.dev" />
-    <meta property="og:title" content="Andrew Garcia | Software Engineer" />
-    <meta property="og:description" content="Software Engineering Student specializing in backend development and application architecture." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://andrewgarcia.dev" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Andrew Garcia | Software Engineer" />
-    <meta name="twitter:description" content="Software Engineering Student specializing in backend development and application architecture." />
+    <link rel="canonical" href="https://andrewgarcia.dev/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#0a0a1a" />
+
+    <!-- El sitio sirve el mismo documento en ES/EN según el conmutador de idioma -->
+    <link rel="alternate" hreflang="en" href="https://andrewgarcia.dev/" />
+    <link rel="alternate" hreflang="es" href="https://andrewgarcia.dev/" />
+    <link rel="alternate" hreflang="x-default" href="https://andrewgarcia.dev/" />
+
+    <!-- Iconos. El anterior declaraba image/svg+xml sobre un .jpg. -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph: sin og:image los enlaces compartidos salían sin previsualización -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Andrew Garcia" />
+    <meta property="og:title" content="Andrew Garcia | Backend Software Engineer" />
+    <meta
+      property="og:description"
+      content="Backend engineer and software architect (Java · Spring Boot · Go). Founder of Lyroo, shipping LyrooPOS with an embedded DIAN e-invoicing engine."
+    />
+    <meta property="og:url" content="https://andrewgarcia.dev/" />
+    <meta property="og:image" content="https://andrewgarcia.dev/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Andrew Garcia — Software Engineer. Backend and software architecture. Founder of Lyroo." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_CO" />
+    <meta property="profile:first_name" content="Andrew" />
+    <meta property="profile:last_name" content="Garcia Mosquera" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Andrew Garcia | Backend Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Backend engineer and software architect (Java · Spring Boot · Go). Founder of Lyroo, shipping LyrooPOS with an embedded DIAN e-invoicing engine."
+    />
+    <meta name="twitter:image" content="https://andrewgarcia.dev/og-image.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Datos estructurados: es lo que permite a Google entender "Andrew Garcia"
+         como una persona concreta (rol, empleador, perfiles) y no como texto suelto. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://andrewgarcia.dev/#person",
+          "name": "Andrew Garcia Mosquera",
+          "givenName": "Andrew",
+          "familyName": "Garcia Mosquera",
+          "url": "https://andrewgarcia.dev/",
+          "image": "https://andrewgarcia.dev/profile.jpg",
+          "jobTitle": "Software Engineer",
+          "description": "Backend software engineer specializing in Java/Spring Boot, Go and software architecture. Founder of Lyroo S.A.S.",
+          "email": "mailto:contact@andrewgarcia.dev",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Armenia",
+            "addressRegion": "Quindío",
+            "addressCountry": "CO"
+          },
+          "worksFor": { "@id": "https://lyroo.com.co/#organization" },
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Institución Universitaria EAM",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Armenia",
+                "addressCountry": "CO"
+              }
+            },
+            { "@type": "EducationalOrganization", "name": "TripleTen LatAm" }
+          ],
+          "knowsAbout": [
+            "Backend Development",
+            "Java",
+            "Spring Boot",
+            "Go",
+            "TypeScript",
+            "React",
+            "PostgreSQL",
+            "Software Architecture",
+            "Hexagonal Architecture",
+            "Microservices",
+            "Cloudflare Workers",
+            "Apache Fineract",
+            "DIAN Electronic Invoicing",
+            "Quality Assurance"
+          ],
+          "knowsLanguage": [
+            { "@type": "Language", "name": "Spanish", "alternateName": "es" },
+            { "@type": "Language", "name": "English", "alternateName": "en" }
+          ],
+          "sameAs": [
+            "https://github.com/DrewGGM",
+            "https://linkedin.com/in/andrewgarciam",
+            "https://lyroo.com.co"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://lyroo.com.co/#organization",
+          "name": "Lyroo S.A.S",
+          "url": "https://lyroo.com.co",
+          "description": "Colombian software startup building offline-first business software for SMBs, including LyrooPOS.",
+          "founder": { "@id": "https://andrewgarcia.dev/#person" },
+          "foundingDate": "2025-05",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Armenia",
+            "addressRegion": "Quindío",
+            "addressCountry": "CO"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://andrewgarcia.dev/#website",
+          "url": "https://andrewgarcia.dev/",
+          "name": "Andrew Garcia — Software Engineer",
+          "inLanguage": ["en", "es"],
+          "about": { "@id": "https://andrewgarcia.dev/#person" },
+          "publisher": { "@id": "https://andrewgarcia.dev/#person" }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

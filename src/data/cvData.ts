@@ -138,7 +138,12 @@ export const cvData: CVData = {
       title: "LyrooPOS — Restaurant Point of Sale",
       tagline: "Offline-first desktop POS with embedded DIAN e-invoicing.",
       description:
-        "Lyroo's flagship product: a desktop point of sale for Colombian restaurants, shipping in production at v1.2. Touchscreen-optimized sales, real-time kitchen and waiter apps over WebSocket, DIAN electronic invoicing built in, Bold card terminals, inventory with automatic deduction, split billing, and AI automation over MCP. It keeps selling with the internet down and syncs invoices to the DIAN when the connection returns.",
+        "Lyroo's flagship product: a desktop point of sale for Colombian restaurants, in production at v1.2 with paying customers since July 2026. Touchscreen sales, real-time kitchen and waiter apps over WebSocket, inventory with automatic deduction and split billing.",
+      highlights: [
+        "DIAN electronic invoicing embedded in the app itself — no third-party API, no per-document fee.",
+        "Offline-first: it keeps selling with the internet down and syncs to the DIAN when the connection returns.",
+        "Go (Wails) backend with 31+ services over PostgreSQL, Bold card terminals, and AI automation over MCP.",
+      ],
       role: "Founder & Lead Engineer",
       year: "2025 — present",
       techStack: ["Go", "Wails", "React", "TypeScript", "PostgreSQL", "WebSocket"],
@@ -146,11 +151,11 @@ export const cvData: CVData = {
         { label: "Live demo", url: "https://pos-system.v1.andrewgarcia.dev", kind: "demo" },
         { label: "Demo source", url: "https://github.com/DrewGGM/demo-pos-system", kind: "repo" }
       ],
-      imageUrl: "/projects/pos-main.png",
+      imageUrl: "/projects/pos-main.webp",
       images: [
-        "/projects/pos-main.png",
-        "/projects/pos-dashboard.png",
-        "/projects/pos-products.png"
+        "/projects/pos-main.webp",
+        "/projects/pos-dashboard.webp",
+        "/projects/pos-products.webp"
       ],
       status: "completed",
       category: "startup",
@@ -216,7 +221,12 @@ export const cvData: CVData = {
       title: "AI Content Bot",
       tagline: "Agent-agnostic content factory for social media.",
       description:
-        "Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex, Gemini CLI, Kimi, Cursor…) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Features AI visual QA that regenerates bad frames, a human-in-the-loop approval panel (PWA), content planning from history, and one-click publishing to Meta.",
+        "Generates reels, carousels, posts and code-rendered motion videos for any brand, driven by ANY coding agent (Claude Code, Codex, Gemini CLI, Cursor…) or any OpenAI-compatible LLM API, OpenRouter or Ollama.",
+      highlights: [
+        "An AI visual QA pass reviews every render and regenerates the frames that came out wrong.",
+        "Human-in-the-loop approval panel as a PWA, so nothing publishes without a person signing off.",
+        "Plans the next batch from what already shipped, then publishes to Meta in one click.",
+      ],
       role: "Sole author",
       year: "2026",
       techStack: ["Node.js", "TypeScript", "AI Agents", "Remotion", "FFmpeg", "Cloudflare D1/R2"],
@@ -224,12 +234,12 @@ export const cvData: CVData = {
         { label: "Live demo", url: "https://ai-content-bot-demo.andrewgarcia.dev", kind: "demo" },
         { label: "Source", url: "https://github.com/DrewGGM/ai-content-bot", kind: "repo" }
       ],
-      imageUrl: "/projects/content-bot-panel.png",
+      imageUrl: "/projects/content-bot-panel.webp",
       images: [
-        "/projects/content-bot-panel.png",
-        "/projects/content-bot-pieces.png",
-        "/projects/content-bot-generate.png",
-        "/projects/content-bot-mobile.png"
+        "/projects/content-bot-panel.webp",
+        "/projects/content-bot-pieces.webp",
+        "/projects/content-bot-generate.webp",
+        "/projects/content-bot-mobile.webp"
       ],
       status: "completed",
       category: "product",
@@ -352,7 +362,12 @@ export const cvData: CVData = {
       title: "Fuse — Daily chain reaction",
       tagline: "One board a day, the same one for everyone, playable with no signal.",
       description:
-        "A daily chain-reaction puzzle: place five pieces, release a spark, watch it bounce and light the board. Everyone gets the same board because it is derived from the date, so there is nothing to fetch before you can play. No engine and no game framework — the board is drawn on a canvas and the rules live in a pure simulation module with no DOM, no network and no clock in it, which is exactly why the same file runs on the device and again inside the Worker: every submitted score is replayed server-side, so a forged one comes back as a mismatch and never reaches the board. Three ranked attempts a day on Cloudflare Workers and D1, an installable PWA that plays a full game offline, and the same core packaged for Android through Capacitor. Sound is eight CC0 one-shots, each keeping a synthesised fallback so a failed download costs texture rather than silence. Verified by close to 300 unit tests and 58 end-to-end. The lesson came from attacking my own deployment: the daily attempt limit counted, checked and then inserted — three steps every sequential test passed and that eight concurrent submissions walked straight through. It is now enforced inside the INSERT itself, where it cannot be raced.",
+        "A daily chain-reaction puzzle: place five pieces, release a spark, and watch it bounce and light the board. Everyone gets the same board because it is derived from the date, so there is nothing to fetch before you can play. No engine and no game framework — a canvas, and rules that live in a pure simulation module with no DOM, no network and no clock in it.",
+      highlights: [
+        "That same module runs again inside the Cloudflare Worker: every submitted score is replayed server-side, so a forged one comes back as a mismatch and never reaches the board.",
+        "An installable PWA that plays a full game offline, and the same core packaged for Android through Capacitor.",
+        "Close to 300 unit tests and 58 end-to-end. Attacking my own deployment exposed a race in the daily attempt limit — now enforced inside the INSERT itself, where it cannot be raced.",
+      ],
       role: "Sole author",
       year: "2026",
       techStack: [
@@ -369,12 +384,12 @@ export const cvData: CVData = {
         { label: "Web source", url: "https://github.com/DrewGGM/fuse-web", kind: "repo" },
         { label: "Android source", url: "https://github.com/DrewGGM/fuse-game", kind: "repo" }
       ],
-      imageUrl: "/projects/fuse-cadena.png",
+      imageUrl: "/projects/fuse-cadena.webp",
       images: [
-        "/projects/fuse-cadena.png",
-        "/projects/fuse-inicio.png",
-        "/projects/fuse-tablero.png",
-        "/projects/fuse-resultado.png"
+        "/projects/fuse-cadena.webp",
+        "/projects/fuse-inicio.webp",
+        "/projects/fuse-tablero.webp",
+        "/projects/fuse-resultado.webp"
       ],
       status: "completed",
       category: "game",
@@ -385,7 +400,12 @@ export const cvData: CVData = {
       title: "Rummikub — Real-time multiplayer",
       tagline: "2–8 player Rummikub on Cloudflare Workers, free to run.",
       description:
-        "Open it with a link and play from any phone, 2 to 8 players, running entirely on Cloudflare's free tier: one Durable Object per room holds the game and its WebSockets, and the Hibernation API means an idle table costs nothing. The rules live in a pure engine with no React, network or clock in it, so the server re-validates every proposed board — tile conservation as multiset equality — and editing the browser's JavaScript gets you nowhere. Tiles shrink and reflow so the board never scrolls, and a long press lifts a whole run at once. Verified by 236 unit tests and by bots that play full games against each other. The lesson that stuck came from production: a Durable Object alarm scheduled in the past re-fires immediately, and that loop ate a day's quota in under an hour.",
+        "Open it with a link and play from any phone, 2 to 8 players, running entirely on Cloudflare's free tier. One Durable Object per room holds the game and its WebSockets, and the Hibernation API means an idle table costs nothing. The rules live in a pure engine with no React, no network and no clock in it.",
+      highlights: [
+        "The server re-validates every proposed board — tile conservation as multiset equality — so editing the browser's JavaScript gets you nowhere.",
+        "Tiles shrink and reflow so the board never scrolls, and a long press lifts a whole run at once.",
+        "236 unit tests plus bots that play full games against each other. Production taught me that a Durable Object alarm scheduled in the past re-fires immediately — that loop ate a day's quota in under an hour.",
+      ],
       role: "Sole author",
       year: "2026",
       techStack: [
@@ -400,11 +420,11 @@ export const cvData: CVData = {
         { label: "Play now", url: "https://rummikub.andrewgarcia.dev", kind: "site" },
         { label: "Source", url: "https://github.com/DrewGGM/lyroo-rummikub", kind: "repo" }
       ],
-      imageUrl: "/projects/rummikub-mesa.png",
+      imageUrl: "/projects/rummikub-mesa.webp",
       images: [
-        "/projects/rummikub-mesa.png",
-        "/projects/rummikub-sala.png",
-        "/projects/rummikub-movil.png"
+        "/projects/rummikub-mesa.webp",
+        "/projects/rummikub-sala.webp",
+        "/projects/rummikub-movil.webp"
       ],
       status: "completed",
       category: "game",

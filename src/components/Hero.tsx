@@ -1,12 +1,19 @@
+import { Suspense, lazy } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, ChevronDown } from 'lucide-react';
-import ParticleBackground from './ParticleBackground';
 import MagneticButton from './MagneticButton';
 import CountUp from './CountUp';
 import CvDownload from './CvDownload';
 import { useLanguage } from '../i18n/LanguageContext';
 import type { CVData } from '../types';
+
+/**
+ * El fondo de partículas arrastra @tsparticles, la dependencia más pesada del
+ * sitio, y es puramente decorativo: se carga en su propio chunk para que no
+ * retrase el primer render del hero.
+ */
+const ParticleBackground = lazy(() => import('./ParticleBackground'));
 
 interface HeroProps {
   data: CVData;
@@ -43,7 +50,9 @@ export default function Hero({ data }: HeroProps) {
 
   return (
     <section id="home" className="hero">
-      <ParticleBackground />
+      <Suspense fallback={null}>
+        <ParticleBackground />
+      </Suspense>
       <motion.div
         className="hero-content container"
         variants={container}

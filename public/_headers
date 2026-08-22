@@ -1,0 +1,35 @@
+# Cabeceras de respuesta. Formato leído tal cual por Netlify y por Cloudflare
+# Pages, así que sirve igual si el sitio cambia de hosting.
+#
+# CSP: el bundle de Vite no emite scripts en línea, así que script-src puede ir
+# sin 'unsafe-inline'. En estilos NO se puede: framer-motion y tsparticles
+# escriben style="" en el DOM en cada frame y sin 'unsafe-inline' se rompen las
+# animaciones enteras. El resto de directivas quedan cerradas.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  # includeSubDomains cubre fuse./rummikub./pos-system.v1.andrewgarcia.dev, que ya
+  # son HTTPS. Sin `preload` a propósito: entrar en la lista precargada de los
+  # navegadores es fácil y salir tarda meses.
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Los assets de Vite llevan hash en el nombre: son inmutables por definición.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/projects/*
+  Cache-Control: public, max-age=604800
+
+/highlights/*
+  Cache-Control: public, max-age=604800
+
+# El HTML nunca se cachea duro o un despliegue nuevo no llega al visitante.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate

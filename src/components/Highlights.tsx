@@ -75,11 +75,11 @@ function GridItem({ area, icon, title, description, href, image, imageAlt }: Gri
 // Layout/visuals are language-independent; the text comes from the i18n dict
 // (t.highlights), matched to these cells by order.
 const cells = [
-  { area: 'md:[grid-area:1/5/3/9]', icon: <Rocket className="h-5 w-5" />, href: 'https://lyroo.com.co', image: '/highlights/lyroo.png' },
-  { area: 'md:[grid-area:1/1/2/5]', icon: <Landmark className="h-5 w-5" />, image: '/highlights/banking.png' },
-  { area: 'md:[grid-area:2/1/3/5]', icon: <Layers className="h-5 w-5" />, image: '/highlights/backend.png' },
-  { area: 'md:[grid-area:1/9/2/13]', icon: <FileCheck2 className="h-5 w-5" />, image: '/highlights/dian.png' },
-  { area: 'md:[grid-area:2/9/3/13]', icon: <MapPin className="h-5 w-5" />, image: '/highlights/location.png' },
+  { area: 'md:[grid-area:1/5/3/9]', icon: <Rocket className="h-5 w-5" />, href: 'https://lyroo.com.co', image: '/highlights/lyroo.webp' },
+  { area: 'md:[grid-area:1/1/2/5]', icon: <Landmark className="h-5 w-5" />, image: '/highlights/banking.webp' },
+  { area: 'md:[grid-area:2/1/3/5]', icon: <Layers className="h-5 w-5" />, image: '/highlights/backend.webp' },
+  { area: 'md:[grid-area:1/9/2/13]', icon: <FileCheck2 className="h-5 w-5" />, image: '/highlights/dian.webp' },
+  { area: 'md:[grid-area:2/9/3/13]', icon: <MapPin className="h-5 w-5" />, image: '/highlights/location.webp' },
 ] as const;
 
 /**

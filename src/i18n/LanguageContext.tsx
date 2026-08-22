@@ -37,10 +37,27 @@ function getInitialLanguage(): Language {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>(getInitialLanguage);
 
-  // Keep <html lang>, the document title and the stored preference in sync.
+  // Keep <html lang>, the document metadata and the stored preference in sync.
+  // Title and description also live in index.html for the crawlers and social
+  // scrapers that read the served HTML; these overwrite them so what a visitor
+  // bookmarks or shares matches the language they are actually reading.
   useEffect(() => {
+    const meta = translations[lang].meta;
     document.documentElement.lang = lang;
-    document.title = translations[lang].meta.title;
+    document.title = meta.title;
+
+    const setMeta = (selector: string, content: string) => {
+      const el = document.head.querySelector<HTMLMetaElement>(selector);
+      if (el) el.content = content;
+    };
+    setMeta('meta[name="description"]', meta.description);
+    setMeta('meta[property="og:title"]', meta.title);
+    setMeta('meta[property="og:description"]', meta.description);
+    setMeta('meta[property="og:locale"]', lang === 'es' ? 'es_CO' : 'en_US');
+    setMeta('meta[property="og:locale:alternate"]', lang === 'es' ? 'en_US' : 'es_CO');
+    setMeta('meta[name="twitter:title"]', meta.title);
+    setMeta('meta[name="twitter:description"]', meta.description);
+
     window.localStorage.setItem(STORAGE_KEY, lang);
   }, [lang]);
 

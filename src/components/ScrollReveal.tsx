@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
 interface ScrollRevealProps {
@@ -24,7 +24,15 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const reduceMotion = useReducedMotion();
   const offset = directionOffsets[direction];
+
+  // La regla global de prefers-reduced-motion en index.css sólo alcanza a las
+  // transiciones CSS; framer-motion anima por JS, así que hay que apagarlo aquí
+  // o esos usuarios siguen viendo el desplazamiento.
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

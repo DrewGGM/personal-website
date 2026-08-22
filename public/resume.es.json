@@ -200,7 +200,7 @@
   "projects": [
     {
       "name": "LyrooPOS — Punto de venta para restaurantes",
-      "description": "El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en su versión 1.2. Ventas optimizadas para pantalla táctil, apps de cocina y mesero en tiempo real por WebSocket, facturación electrónica DIAN integrada, datáfonos Bold, inventario con descuento automático, división de cuentas y automatización con IA vía MCP. Sigue vendiendo sin internet y sincroniza las facturas con la DIAN cuando vuelve la conexión.",
+      "description": "El producto insignia de Lyroo: un punto de venta de escritorio para restaurantes colombianos, en producción en v1.2 y con clientes de pago desde julio de 2026. Ventas optimizadas para pantalla táctil, apps de cocina y mesero en tiempo real por WebSocket, inventario con descuento automático y división de cuentas.",
       "keywords": [
         "Go",
         "Wails",
@@ -278,7 +278,7 @@
     },
     {
       "name": "AI Content Bot",
-      "description": "Genera reels, carruseles, publicaciones y videos con motion renderizados por código para cualquier marca usando CUALQUIER agente de código (Claude Code, Codex, Gemini CLI, Kimi, Cursor…) o API de LLM (compatible con OpenAI, OpenRouter, Ollama). Incluye QA visual con IA que regenera los frames malos, un panel de aprobación con humano en el ciclo (PWA), planificación de contenido a partir del historial y publicación en Meta con un clic.",
+      "description": "Genera reels, carruseles, posts y vídeos animados renderizados desde código para cualquier marca, movido por CUALQUIER agente de código (Claude Code, Codex, Gemini CLI, Cursor…) o cualquier API LLM compatible con OpenAI, OpenRouter u Ollama.",
       "keywords": [
         "Node.js",
         "TypeScript",
@@ -392,6 +392,39 @@
       "roles": [
         "Proyecto universitario"
       ]
+    },
+    {
+      "name": "Fuse — Reacción en cadena diaria",
+      "description": "Un puzle diario de reacción en cadena: colocas cinco piezas, sueltas la chispa y ves cómo rebota y enciende el tablero. Todos juegan el mismo tablero porque se deriva de la fecha, así que no hay nada que descargar antes de empezar. Sin motor ni framework de juego — un canvas, y unas reglas que viven en un módulo de simulación puro, sin DOM, sin red y sin reloj.",
+      "keywords": [
+        "TypeScript",
+        "Canvas 2D",
+        "Cloudflare Workers",
+        "D1",
+        "PWA",
+        "Capacitor",
+        "Playwright"
+      ],
+      "roles": [
+        "Autor único"
+      ],
+      "url": "https://fuse.andrewgarcia.dev"
+    },
+    {
+      "name": "Rummikub — Multijugador en tiempo real",
+      "description": "Lo abres con un enlace y juegas desde cualquier móvil, de 2 a 8 jugadores, entero sobre el plan gratuito de Cloudflare. Un Durable Object por sala guarda la partida y sus WebSockets, y la Hibernation API hace que una mesa inactiva no cueste nada. Las reglas viven en un motor puro, sin React, sin red y sin reloj.",
+      "keywords": [
+        "Cloudflare Workers",
+        "Durable Objects",
+        "WebSocket",
+        "React",
+        "TypeScript",
+        "Playwright"
+      ],
+      "roles": [
+        "Autor único"
+      ],
+      "url": "https://rummikub.andrewgarcia.dev"
     },
     {
       "name": "Encubierto",

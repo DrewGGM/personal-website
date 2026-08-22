@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run sitemap",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "sitemap": "tsx scripts/generate-sitemap.ts",
     "cv": "tsx scripts/generate-cv.ts",
     "cv:lint": "tsx scripts/cv-lint.ts",
     "cv:match": "tsx scripts/cv-match.ts"

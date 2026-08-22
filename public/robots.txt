@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# El portafolio es público a propósito, incluidos los rastreadores de IA:
+# que un asistente pueda citar este sitio al responder "backend developer
+# Colombia" vale más que ocultarlo.
+
+Sitemap: https://andrewgarcia.dev/sitemap.xml

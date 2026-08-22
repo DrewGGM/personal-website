@@ -67,7 +67,17 @@ export interface Project {
   title: string;
   /** One-liner used by the compact cards; `description` is the long form. */
   tagline?: string;
+  /**
+   * What the project is, in 2-3 sentences. Keep it under ~450 characters: past
+   * that the featured card turns into a wall of text nobody reads. Technical
+   * depth and outcomes belong in `highlights`, which is scannable.
+   */
   description: string;
+  /**
+   * Up to 3 short bullets shown under `description` on featured cards — the
+   * interesting engineering decision, the hard constraint, the result.
+   */
+  highlights?: string[];
   /** e.g. "Solo" / "Equipo de 4 · IA y Finanzas" — shown on compact cards. */
   role?: string;
   /** e.g. "2025" or "2024–2025". */

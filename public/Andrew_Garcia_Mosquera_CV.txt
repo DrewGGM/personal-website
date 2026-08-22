@@ -9,7 +9,7 @@ architecture). Currently building core banking systems at COFINCAFE and full-sta
 product and engineering at Lyroo. Strong foundation in QA, clean code and agile methodologies.
 EXPERIENCE
 Junior Software Developer
-Financiera Cofincafé (Cooperativa de Ahorro y Crédito) | Armenia, Quindio, Colombia | Aug 2026 - Present (incoming)
+Financiera Cofincafé (Cooperativa de Ahorro y Crédito) | Armenia, Quindio, Colombia | Aug 2026 - Present
 Hired into a permanent engineering role after the internship, continuing on the cooperative's core banking platform.
 Developing and maintaining features on the Apache Fineract core banking system
 Supporting financial products and banking module configuration in production
@@ -37,11 +37,11 @@ Bold payment terminals
 Lead product, engineering, sales and customer onboarding, including DIAN digital-certificate management for clients
 PROJECTS
 LyrooPOS - Restaurant Point of Sale pos-system.v1.andrewgarcia.dev | gh:DrewGGM/demo-pos-system
-Lyroo's flagship product: a desktop point of sale for Colombian restaurants, shipping in production at v1.2. Stack: Go, Wails, React,
-TypeScript, PostgreSQL, WebSocket.
+Lyroo's flagship product: a desktop point of sale for Colombian restaurants, in production at v1.2 with paying customers since July 2026.
+Stack: Go, Wails, React, TypeScript, PostgreSQL, WebSocket.
 AI Content Bot ai-content-bot-demo.andrewgarcia.dev | gh:DrewGGM/ai-content-bot
-Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex,
-Gemini CLI, Kimi, Cursor...) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Stack: Node.js, TypeScript, AI Agents, Remotion,
+Generates reels, carousels, posts and code-rendered motion videos for any brand, driven by ANY coding agent (Claude Code, Codex,
+Gemini CLI, Cursor...) or any OpenAI-compatible LLM API, OpenRouter or Ollama. Stack: Node.js, TypeScript, AI Agents, Remotion,
 FFmpeg, Cloudflare D1/R2.
 VetApp - Veterinary clinic management gh:DrewGGM/Proyecto-AppsEmpresariales-VetApi
 Full-stack management system for veterinary clinics: owners and pets, appointments and medical consultations, vaccinations,

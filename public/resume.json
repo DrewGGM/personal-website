@@ -200,7 +200,7 @@
   "projects": [
     {
       "name": "LyrooPOS — Restaurant Point of Sale",
-      "description": "Lyroo's flagship product: a desktop point of sale for Colombian restaurants, shipping in production at v1.2. Touchscreen-optimized sales, real-time kitchen and waiter apps over WebSocket, DIAN electronic invoicing built in, Bold card terminals, inventory with automatic deduction, split billing, and AI automation over MCP. It keeps selling with the internet down and syncs invoices to the DIAN when the connection returns.",
+      "description": "Lyroo's flagship product: a desktop point of sale for Colombian restaurants, in production at v1.2 with paying customers since July 2026. Touchscreen sales, real-time kitchen and waiter apps over WebSocket, inventory with automatic deduction and split billing.",
       "keywords": [
         "Go",
         "Wails",
@@ -278,7 +278,7 @@
     },
     {
       "name": "AI Content Bot",
-      "description": "Generates reels, carousels, posts and code-rendered motion videos for any brand using ANY coding agent (Claude Code, Codex, Gemini CLI, Kimi, Cursor…) or LLM API (OpenAI-compatible, OpenRouter, Ollama). Features AI visual QA that regenerates bad frames, a human-in-the-loop approval panel (PWA), content planning from history, and one-click publishing to Meta.",
+      "description": "Generates reels, carousels, posts and code-rendered motion videos for any brand, driven by ANY coding agent (Claude Code, Codex, Gemini CLI, Cursor…) or any OpenAI-compatible LLM API, OpenRouter or Ollama.",
       "keywords": [
         "Node.js",
         "TypeScript",
@@ -392,6 +392,39 @@
       "roles": [
         "University project"
       ]
+    },
+    {
+      "name": "Fuse — Daily chain reaction",
+      "description": "A daily chain-reaction puzzle: place five pieces, release a spark, and watch it bounce and light the board. Everyone gets the same board because it is derived from the date, so there is nothing to fetch before you can play. No engine and no game framework — a canvas, and rules that live in a pure simulation module with no DOM, no network and no clock in it.",
+      "keywords": [
+        "TypeScript",
+        "Canvas 2D",
+        "Cloudflare Workers",
+        "D1",
+        "PWA",
+        "Capacitor",
+        "Playwright"
+      ],
+      "roles": [
+        "Sole author"
+      ],
+      "url": "https://fuse.andrewgarcia.dev"
+    },
+    {
+      "name": "Rummikub — Real-time multiplayer",
+      "description": "Open it with a link and play from any phone, 2 to 8 players, running entirely on Cloudflare's free tier. One Durable Object per room holds the game and its WebSockets, and the Hibernation API means an idle table costs nothing. The rules live in a pure engine with no React, no network and no clock in it.",
+      "keywords": [
+        "Cloudflare Workers",
+        "Durable Objects",
+        "WebSocket",
+        "React",
+        "TypeScript",
+        "Playwright"
+      ],
+      "roles": [
+        "Sole author"
+      ],
+      "url": "https://rummikub.andrewgarcia.dev"
     },
     {
       "name": "Encubierto",

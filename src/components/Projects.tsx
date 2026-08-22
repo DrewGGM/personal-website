@@ -123,16 +123,16 @@ function FeaturedProject({ project }: { project: Project }) {
           ) : images.length === 1 ? (
             <img src={images[0]} alt={project.title} loading="lazy" />
           ) : null}
-          {images.length <= 1 && (
-            <div className="project-featured-overlay">
-              <span className={`project-status-badge ${statusClass[project.status]}`}>
-                {t.projects.status[project.status]}
-              </span>
-            </div>
-          )}
         </div>
         <div className="project-featured-info">
-          <span className="project-featured-label">{t.projects.featured}</span>
+          {/* El badge de estado vive aquí y no sobre la imagen: en las tarjetas
+              con galería el overlay no se renderizaba y el estado desaparecía. */}
+          <div className="project-featured-eyebrow">
+            <span className="project-featured-label">{t.projects.featured}</span>
+            <span className={`project-status-badge inline ${statusClass[project.status]}`}>
+              {t.projects.status[project.status]}
+            </span>
+          </div>
           <h4 className="project-featured-title">{project.title}</h4>
           {(project.role || project.year) && (
             <p className="project-meta">
@@ -140,6 +140,13 @@ function FeaturedProject({ project }: { project: Project }) {
             </p>
           )}
           <p className="project-featured-description">{project.description}</p>
+          {project.highlights && project.highlights.length > 0 && (
+            <ul className="project-highlights">
+              {project.highlights.map((h) => (
+                <li key={h}>{h}</li>
+              ))}
+            </ul>
+          )}
           {project.techStack.length > 0 && (
             <div className="project-tech">
               {project.techStack.map((tech) => (

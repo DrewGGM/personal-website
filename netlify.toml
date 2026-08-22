@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+# Las cabeceras (CSP, HSTS, caché) viven en `public/_headers`, no aquí: ese
+# formato lo entienden tanto Netlify como Cloudflare Pages, así que el sitio
+# conserva su configuración de seguridad si cambia de hosting. Netlify da
+# prioridad a netlify.toml sobre _headers, por eso este archivo no define
+# ninguna: tenerlas en los dos sitios sólo garantiza que se desincronicen.
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
