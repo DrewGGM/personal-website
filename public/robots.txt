@@ -1,8 +1,14 @@
 User-agent: *
 Allow: /
 
-# El portafolio es público a propósito, incluidos los rastreadores de IA:
-# que un asistente pueda citar este sitio al responder "backend developer
-# Colombia" vale más que ocultarlo.
+# OJO: Cloudflare antepone su bloque "Managed Content" a este archivo antes de
+# servirlo, y ese bloque hoy pone Disallow: / a ClaudeBot, GPTBot,
+# Google-Extended, CCBot, Bytespider, Amazonbot, Applebot-Extended y
+# meta-externalagent, con Content-Signal: ai-train=no.
+#
+# Es decir: los buscadores clásicos indexan con normalidad, pero los asistentes
+# de IA no pueden leer ni citar el portafolio. Eso NO se cambia desde aquí — se
+# desactiva en el panel de Cloudflare, en AI Crawl Control / Content Signals.
+# Compruébalo con: curl -s https://andrewgarcia.dev/robots.txt
 
 Sitemap: https://andrewgarcia.dev/sitemap.xml
