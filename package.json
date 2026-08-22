@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sitemap": "tsx scripts/generate-sitemap.ts",
+    "links:check": "tsx scripts/check-links.ts",
     "cv": "tsx scripts/generate-cv.ts",
     "cv:lint": "tsx scripts/cv-lint.ts",
     "cv:match": "tsx scripts/cv-match.ts"

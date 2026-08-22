@@ -271,7 +271,7 @@ export const cvData: CVData = {
       year: "2026",
       techStack: ["Astro", "Tailwind CSS v4", "TypeScript", "Cloudflare Pages"],
       links: [
-        { label: "Live site", url: "https://qr-permanente.pages.dev", kind: "site" },
+        { label: "Live site", url: "https://qr.andrewgarcia.dev", kind: "site" },
         { label: "Source", url: "https://github.com/DrewGGM/QR-Generator", kind: "repo" }
       ],
       status: "completed",
